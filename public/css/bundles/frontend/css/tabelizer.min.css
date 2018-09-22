@@ -1,0 +1,441 @@
+table.controller {
+    border-collapse: collapse;
+    padding: 0;
+}
+
+table.controller .control {
+}
+
+table.controller td {
+    padding: 0;
+    border: 0 solid red
+}
+
+table.controller .line {
+    position: relative;
+    height: 24px;
+    width: 15px;
+    float: left
+}
+
+table.controller .line .vert {
+    width: 2px;
+    height: 100%
+}
+
+table.controller .line .horz {
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .line.level1 .horz, table.controller .line.level1 .vert {
+    background-color: #2B7DB9;
+}
+
+table.controller .line.level2 .horz, table.controller .line.level2 .vert {
+    background-color: #2B7DB9;
+}
+
+table.controller .line.level3 .horz, table.controller .line.level3 .vert {
+    background-color: #098EE7
+}
+
+table.controller tr.hidden {
+    display: none
+}
+
+table.controller .expander {
+    margin-right: 10px
+}
+
+table.controller .l1 .control {
+    width: 10px;
+    min-height: 100%
+}
+
+table.controller .l2 .control {
+    width: 30px;
+    min-height: 100%
+}
+
+table.controller .l3 .control {
+    width: 60px;
+    min-height: 100%
+}
+
+table.controller .l4 .control {
+    width: 90px;
+    min-height: 100%
+}
+
+table.controller .l5 .control {
+    width: 130px;
+    min-height: 100%
+}
+
+table.controller .l6 .control {
+    width: 160px;
+    min-height: 100%
+}
+
+table.controller .l7 .control {
+    width: 180px;
+    min-height: 100%
+}
+
+
+table.controller .l8 .control {
+    width: 200px;
+    min-height: 100%
+}
+
+
+table.controller .l9 .control {
+    width: 220px;
+    min-height: 100%
+}
+
+table.controller .l10 .control {
+    width: 240px;
+    min-height: 100%
+}
+
+table.controller .l11 .control {
+    width: 260px;
+    min-height: 100%
+}
+
+table.controller .l12 .control {
+    width: 290px;
+    min-height: 100%
+}
+
+table.controller .l13 .control {
+    width: 320px;
+    min-height: 100%
+}
+
+
+
+table.controller .l1.contracted .control .line.level1, table.controller .l2.contracted .control .line.level2, table.controller .l3.contracted .control .line.level3, table.controller .l4.contracted .control .line.level4, table.controller .l5.contracted .control .line.level5, table.controller .l6.contracted .control .line.level6, table.controller .l7.contracted .control .line.level7, table.controller .l8.contracted .control .line.level8, table.controller .l9.contracted .control .line.level9, table.controller .l10contracted .control .line.level10 table.controller .l11contracted .control .line.level11 table.controller .l12 .expander {
+    display: none
+}
+
+table.controller .label {
+    margin-right: 30px
+}
+
+table.controller td.data {
+    text-align: center;
+    min-width: 90px
+}
+
+table.controller .control, table.controller .expander, table.controller .label {
+    float: left
+}
+
+table.controller .contracted .expander {
+    width: 20px;
+    height: 20px;
+    /* background-position: 0 5px; */
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-image: url(../images/plus.png);
+}
+
+table.controller .expanded .expander {
+    width: 20px;
+    height: 20px;
+    /* background-position: 0 5px; */
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-image: url(../images/minus.png);
+}
+
+table.controller .childless .expander, table.controller .control .line.level1 .horz {
+    display: none
+}
+
+table.controller .l1-first .control .line.level1 .horz {
+    display: block
+}
+
+table.controller .l1-last .control .line.level1 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l1-first .control .line.level1 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l1-last .control .line.level1 .vert {
+    width: 2px;
+    height: 50%
+}
+
+table.controller .control .line.level2 .horz {
+    display: none
+}
+
+table.controller .l2-first .control .line.level2 .horz {
+    display: block
+}
+
+table.controller .l2-last .control .line.level2 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l2-first .control .line.level2 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l2-last .control .line.level2 .vert {
+    width: 2px;
+    height: 50%
+}
+
+table.controller .control .line.level3 .horz {
+    display: none
+}
+
+table.controller .l3-first .control .line.level3 .horz {
+    display: block
+}
+
+table.controller .l3-last .control .line.level3 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l3-first .control .line.level3 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l3-last .control .line.level3 .vert {
+    width: 2px;
+    height: 50%
+}
+
+table.controller .control .line.level4 .horz {
+    display: none
+}
+
+table.controller .l4-first .control .line.level4 .horz {
+    display: block
+}
+
+table.controller .l4-last .control .line.level4 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l4-first .control .line.level4 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l4-last .control .line.level4 .vert {
+    width: 2px;
+    height: 50%
+}
+
+table.controller .control .line.level5 .horz {
+    display: none
+}
+
+table.controller .l5-first .control .line.level5 .horz {
+    display: block
+}
+
+table.controller .l5-last .control .line.level5 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l5-first .control .line.level5 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l5-last .control .line.level5 .vert {
+    width: 2px;
+    height: 50%
+}
+
+table.controller .control .line.level6 .horz {
+    display: none
+}
+
+table.controller .l6-first .control .line.level6 .horz {
+    display: block
+}
+
+table.controller .l6-last .control .line.level6 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l6-first .control .line.level6 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l6-last .control .line.level6 .vert {
+    width: 2px;
+    height: 50%
+}
+
+table.controller .control .line.level7 .horz {
+    display: none
+}
+
+table.controller .l7-first .control .line.level7 .horz {
+    display: block
+}
+
+table.controller .l7-last .control .line.level7 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l7-first .control .line.level7 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l7-last .control .line.level7 .vert {
+    width: 2px;
+    height: 50%
+}
+
+table.controller .control .line.level8 .horz {
+    display: none
+}
+
+table.controller .l8-first .control .line.level8 .horz {
+    display: block
+}
+
+table.controller .l8-last .control .line.level8 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l8-first .control .line.level8 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l8-last .control .line.level8 .vert {
+    width: 2px;
+    height: 50%
+}
+
+table.controller .control .line.level9 .horz {
+    display: none
+}
+
+table.controller .l9-first .control .line.level9 .horz {
+    display: block
+}
+
+table.controller .l9-last .control .line.level9 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l9-first .control .line.level9 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l9-last .control .line.level9 .vert {
+    width: 2px;
+    height: 50%
+}
+
+table.controller .control .line.level10 .horz {
+    display: none
+}
+
+table.controller .l10-first .control .line.level10 .horz {
+    display: block
+}
+
+table.controller .l10-last .control .line.level10 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l10-first .control .line.level10 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l10-last .control .line.level10 .vert {
+    width: 2px;
+    height: 50%
+}
+
+table.controller .control .line.level11 .horz {
+    display: none
+}
+
+table.controller .l11-first .control .line.level11 .horz {
+    display: block
+}
+
+table.controller .l11-last .control .line.level11 .horz {
+    display: block;
+    width: 10px;
+    height: 2px
+}
+
+table.controller .l11-first .control .line.level11 .vert {
+    bottom: 0;
+    position: absolute;
+    width: 2px;
+    height: 50%
+}
+
+table.controller .l11-last .control .line.level11 .vert {
+    width: 2px;
+    height: 50%
+}

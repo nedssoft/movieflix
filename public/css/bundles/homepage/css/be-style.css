@@ -1,0 +1,140 @@
+body .animate-label {
+    position: absolute;
+    left: 1.25rem;
+    top: 1.188rem;
+    pointer-events: none;
+    font-size: 1rem;
+    color: #191d26;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease-in-out;
+}
+
+body .form-control {
+    background: none;
+    box-shadow: none;
+    border-radius: 0rem;
+    border: 0rem;
+    border-bottom: 0.2rem solid #fff;
+    font-size: 1.125rem;
+    color: #191d26;
+    padding: 1.125rem 0.3125rem;
+}
+
+.clx-login-page-bg-video {
+    min-width: 120%;
+    min-height: 150%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: -28%;
+    margin-left: -80%;
+    opacity: 0.25;
+}
+
+.clx-account-bg, .clx-registration-page .clx-account-b {
+    background: rgba(33, 150, 243, 0.2);
+    padding: 4rem 2rem;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.clx-accunt-btn {
+    background: rgba(2, 160, 196, 0.62);
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 7px;
+    width: 100%;
+    cursor: pointer;
+    color: #fff;
+}
+
+.clx-accunt-btn:hover, .clx-accunt-btn:focus {
+    background-color: #055c6f;
+}
+
+.clx-tooltip {
+
+}
+
+.clx-tooltip .clx-tooltiptext {
+    visibility: hidden;
+    width: 320px;
+    height: auto;
+    background-color: rgba(10, 161, 255, 0.2);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    margin: -40px 0px 0px -50px;
+    position: absolute;
+    z-index: 1;
+}
+
+.clx-tooltip:hover .clx-tooltiptext {
+    visibility: visible;
+
+}
+
+.clx-account-pages {
+    position: relative;
+    overflow-x: hidden;
+    padding: 12.375rem 0 14.375rem 0;
+    background: linear-gradient(to bottom, #062129, rgb(39, 91, 208));
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    -webkit-transition: background-color 302s, color 392s; /* Safari */
+    transition: background-color 602s, color 602s;
+    -webkit-transition-delay: 600s; /* Safari */
+    transition-delay: 690s;
+
+}
+
+.max-width-120p {
+    max-width: 120%;
+}
+
+.deposit-table a {
+    color: #fff;
+    font-size: 1.5rem;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 300;
+    padding-top: 1.15rem;
+    padding-bottom: 0.45rem;
+    -webkit-transition: color 1s;
+    transition: color 1s;
+}
+
+.deposit-table a:hover {
+    color: #4ab2f8;
+}
+
+.home-sign-up-text-btn {
+    color: #44c4d5 !important;
+    text-shadow: 2px 2px 4px #000000 !important;
+}
+
+.clx-pre-btns-sign-up {
+    background-color: white !important;
+    color: #4ab2f8 !important;
+}
+
+.clx-pre-btns-sign-up:hover {
+    background-color: #4ab2f8 !important;
+    color: #1e222d !important;
+}
+
+@media only screen and (min-width: 1000px) {
+    .blockchain-animate-1 {
+        top: 70vh !important;
+    }
+
+    .blockchain-animate-2 {
+        top: 80vh !important;
+    }
+}

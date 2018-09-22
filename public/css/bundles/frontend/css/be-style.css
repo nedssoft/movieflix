@@ -1,0 +1,241 @@
+#wallet-tab li a#pills-ada-tab {
+    background: url(../images/currencies/ada.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-bch-tab {
+    background: url(../images/currencies/bch.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-btc-tab {
+    background: url(../images/currencies/btc.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-dash-tab {
+    background: url(../images/currencies/dash.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-eth-tab {
+    background: url(../images/currencies/eth.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-lsk-tab {
+    background: url(../images/currencies/lsk.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-ltc-tab {
+    background: url(../images/currencies/ltc.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-miota-tab {
+    background: url(../images/currencies/miota.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-neo-tab {
+    background: url(../images/currencies/neo.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-usdt-tab {
+    background: url(../images/currencies/usdt.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-xmr-tab {
+    background: url(../images/currencies/xmr.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-xrp-tab {
+    background: url(../images/currencies/xrp.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-adv-tab {
+    background: url(../images/currencies/adv2.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-payeer-tab {
+    background: url(../images/currencies/payeer.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-clx-tab {
+    background: url(../images/currencies/clx.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+
+#wallet-tab li a#pills-pm-tab {
+    background: url(../images/currencies/pm.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-wallet-usd-tab {
+    background: url(../images/wallet-icon-usd.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-wallet-btc-tab {
+    background: url(../images/wallet-icon-btc.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-wallet-ltc-tab {
+    background: url(../images/wallet-icon-ltc.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-wallet-eth-tab {
+    background: url(../images/wallet-icon-eth.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+#wallet-tab li a#pills-wallet-clx-tab {
+    background: url(../images/wallet-icon-clx.png) no-repeat center top;
+    background-size: 44px 44px;
+}
+
+.be-display-block {
+    display: block !important;
+}
+
+.be-text-center {
+    text-align: center;
+}
+
+.be-color-white {
+    color: white;
+}
+
+.be-min-height-210 {
+    min-height: 211px !important;
+}
+
+.be-min-height-313 {
+    min-height: 313px !important;
+}
+
+.be-min-height-350 {
+    min-height: 350px !important;
+}
+
+.be-min-height-540 {
+    min-height: 540px !important;
+}
+
+.be-min-height-700 {
+    min-height: 700px !important;
+}
+
+.be-min-height-780 {
+    min-height: 780px !important;
+}
+
+.borderless td {
+    border: none !important;
+}
+
+.information img {
+    height: 17px;
+    width: auto;
+}
+
+.short-cut-button-center {
+    text-align: center !important;
+}
+
+.short-cut-button-center i {
+    float: left !important;
+}
+
+.wallet-link {
+    color: #3797d3 !important;
+}
+
+.wallet-link:hover {
+    color: #47a7e2;
+    text-decoration: underline;
+}
+
+.wallet-contraction-align {
+    float: right;
+    margin-right: 20px;
+}
+
+.font-sz-10 {
+    font-size: 10px !important;
+}
+
+.color-white {
+    color: white !important;
+}
+
+.is--link {
+    cursor: pointer !important;
+}
+
+.is--link:hover {
+    cursor: pointer !important;
+    text-decoration: underline !important;
+}
+
+.internal-exchange-copy-img {
+    content: url("../images/copytrade.png");
+    cursor: pointer;
+    width: 42px;
+}
+
+.internal-exchange-copy-img:hover {
+    content: url("../images/copytrade_hover.png");
+}
+
+.icon-challenge {
+    display: inline-block;
+    background: url(../images/cup_white.png) no-repeat;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+}
+
+a:hover .icon-challenge {
+    background: url(../images/cup_blue.png) no-repeat;
+    background-size: 30px 30px;
+}
+
+@media (max-width: 575px) {
+
+    .be-hidden-mobile {
+        display: none;
+    }
+
+    .be-hidden-desktop {
+        display: inline;
+    }
+
+    .be-hidden-desktop-block {
+        display: block;
+    }
+
+}
+
+@media (min-width: 576px) {
+
+    .be-hidden-mobile {
+        display: inline;
+    }
+
+    .be-hidden-desktop {
+        display: none;
+    }
+}
+

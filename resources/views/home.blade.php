@@ -1,0 +1,71 @@
+
+
+@extends('layouts.app1')
+@section('content')
+	@php $page_name = 'home'; @endphp
+@include('browser-header')
+
+<style>
+	.movie_thumb{}
+	.btn_opaque{font-size:20px; border: 1px solid #939393;text-decoration: none;margin: 10px;background-color: rgba(0, 0, 0, 0.74); color: #fff;}
+	.btn_opaque:hover{border: 1px solid #939393;text-decoration: none;background-color: rgba(57, 57, 57, 0.74);color:#fff;}
+</style>
+<!-- TOP FEATURED SECTION -->
+
+<div style="height:85vh;width:100%;background-image: url({{ $featured_movie->poster }}); background-size:cover;">
+	<div style="font-size: 85px;font-weight: bold;clear: both;padding: 200px 0px 0px 50px;color: #fff;">
+		{{$featured_movie->title}}
+		<div style="font-size: 30px; letter-spacing: .2px; color: #fff; font-weight: 400;">
+			{{ $featured_movie->description}}
+		</div>
+		<a href="{{ route('view.movie',$featured_movie->id)}}" 
+			class="btn btn-danger btn-lg" style="font-size: 20px;"> 
+		<b><i class="fa fa-play"></i> PLAY</b>
+		</a>
+		<!-- ADD OR DELETE FROM PLAYLIST -->
+		<span id="mylist_button_holder">
+		</span>
+		<span id="mylist_add_button" style="display:none;">
+		<a href="#" class="btn  btn-lg btn_opaque"
+			onclick=""> 
+		<b><i class="fa fa-plus"></i> MY LIST</b>
+		</a>
+		</span>
+		<span id="mylist_delete_button" style="display:none;">
+		<a href="#" class="btn  btn-lg btn_opaque"
+			onclick=""> 
+		<b><i class="fa fa-check"></i> MY LIST</b>
+		</a>
+		</span>
+	</div>
+</div>
+
+<!-- MY LIST, GENRE WISE LISTING & SLIDER -->
+@isset ($genres)
+	@foreach ($genres as $row):
+	@if (count($row->movies)> 0)
+<div class="row" style="margin:0px 20px;">
+	<h4 style="color: #000">{{ $row->name}}</h4>
+	<div class="content">
+		<div class="grid">
+			@isset ($row->movies)
+				@foreach ($row->movies as $m)
+					@php
+					$title	=	$m['title'];
+					$link	=	route('view.movie', $m->id);
+					$thumb	=	$m->poster;
+					
+					@endphp
+					@include('thumb')
+			@endforeach
+			@endisset
+				
+				
+		</div>
+	</div>
+</div>
+@endif
+@endforeach
+@endisset
+
+@endsection
