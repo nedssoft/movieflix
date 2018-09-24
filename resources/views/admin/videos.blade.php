@@ -9,9 +9,9 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel" style="min-height: 530px">
-					<div class="x_title">
-						<h2><i class="fa fa-video-camera"></i> <a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#upload">Upload Movie</a></h2>
-
+					<div class="x_title d-flex">
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#upload">Upload Movie</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#featured-movie">Set Featured Movie</a>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -21,8 +21,10 @@
 									<th>S/No</th>
 									<th>Title</th>
 									<th>Description</th>
+									<th>Rating</th>
+									<th>Year</th>
+									<th>Casts</th>
 									<th>Date</th>
-									<th>Status</th>
 									
 									<th><i class="fa fa-cog"></i></th>
 									<th><i class="fa fa-cog"></i></th>
@@ -36,8 +38,11 @@
 										<td>{{ $loop->index +1}}</td>
 										<td>{{ $video->title}}</td>
 										<td>{{ $video->description}}</td>
+										<td>{{ $video->rating}}</td>
+										<td>{{ $video->year}}</td>
+										<td>{{ $video->casts}}</td>
 										<td>{{ $video->created_at}}</td>
-										<td>{{ title_case($video->status)}}</td>
+										
 										<td><a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit-video{{$video->id}}" title="Edit">Edit
                                 			</a></td>
                                 		<td><a class="btn btn-xs btn-danger" href="{{ route('admin.movie.delete', $video->id)}}" title="Delete?" onclick="return confirm('Are you sure about this ?')">Delete
@@ -105,7 +110,45 @@
 		</div>
 	</div>
 </div>
-
+<div class="modal fade" id="featured-movie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Featured Movie</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form method="POST" action="{{ route('featured.movie')}}">
+					@csrf
+					<div class="form-group">
+						<label for="exampleFormControlFile1"></label>
+							<select name="type" class="form-control chosen-select">
+				              <option value="basic">Basic</option>
+				              <option value="standard">Standard</option>
+				              <option value="premium">Premium</option>
+				            </select>
+					</div>
+					
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Movie</label>
+						<select class="form-control chosen-select" name="movie_id">
+							@foreach ($videos as $m)
+							<option value="{{ $m->id}}">{{ $m->title}}</option>
+							@endforeach
+						</select> 
+					
+					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" id="submit-button" class="btn btn-primary">Save changes</button>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
 	@push('scripts')
 		<script type="text/javascript">
 		

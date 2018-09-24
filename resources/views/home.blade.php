@@ -42,8 +42,8 @@
 
 <!-- MY LIST, GENRE WISE LISTING & SLIDER -->
 @isset ($genres)
-	@foreach ($genres as $row):
-	@if (count($row->movies)> 0)
+	@foreach ($genres as $row)
+	@if (count($row->movies)> 0 && in_array(auth()->user()->type, (array)$row->types))
 <div class="row" style="margin:0px 20px;">
 	<h4 style="color: #000">{{ $row->name}}</h4>
 	<div class="content">

@@ -29,7 +29,7 @@
 		</div>
 		
 		<br>
-		<a href="#" class="btn btn-danger btn-lg" >SIGN IN</a>
+		<a href="{{ route('login')}}" class="btn btn-danger btn-lg" >SIGN IN</a>
 	</div>
 </div>
 <!-- MIDDLE TAB SECTION -->

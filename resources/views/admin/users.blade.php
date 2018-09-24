@@ -24,8 +24,10 @@
 								<tr>
 									<th>S/No</th>
 									<th>Username</th>
+									<th>Type</th>
 									<th>Date</th>
-									<th>Action</th>
+									 <th><i class="fa fa-edit"></i></th>
+                  					<th><i class="fa fa-trash"></i></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -34,10 +36,14 @@
 										<tr>
 										<td>{{ $loop->index +1}}</td>
 										<td>{{$user->username}}</td>
-										
+										<td>{{$user->type}}</td>
 										<td>{{$user->created_at}}</td>
+										
+										<td><a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit-user{{$user->id}}"title="Edit">Edit
+                                      </a></td>
 										<td><a href="{{route('user.delete', $user->id)}}" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to do this?')">Delete User</a></td>	
 										</tr>
+										@include('admin.edit-user')
 									@endforeach
 								@endisset
 			
@@ -61,7 +67,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="{{ route('register')}}">
+				<form method="POST" action="{{ route('user.add')}}">
 					@csrf
 					
 					
@@ -78,12 +84,24 @@
                                 @endif
                             </div>
                         </div>
-{{-- 
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}">
+
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -91,7 +109,19 @@
                                     </span>
                                 @endif
                             </div>
-                        </div> --}}
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="type">
+                                	<option value="basic">Basic</option>
+                                	<option value="standard">Standard</option>
+                                	<option value="premium">Premium</option>
+                                </select>
+
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -104,14 +134,6 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
 

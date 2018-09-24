@@ -20,10 +20,11 @@
                 <tr>
                   <th>S/No</th>
                   <th>Name</th>
+                  <th>User Types</th>
                   <th>Date</th>
                 
-                  <th><i class="fa fa-cog"></i></th>
-                  <th><i class="fa fa-cog"></i></th>
+                  <th><i class="fa fa-edit"></i></th>
+                  <th><i class="fa fa-trash"></i></th>
                 </tr>
               </thead>
               <tbody>
@@ -33,13 +34,24 @@
                   <tr>
                     <td>{{ $loop->index +1}}</td>
                     <td>{{ $genre->name}}</td>
+                    <td>
+                     @isset($genre->types)
+                       @foreach ( (array)$genre->types as $type)
+                        {{ title_case($type)}}
+                        @unless ($loop->last)
+                        ,
+                        @endunless
+                      @endforeach
+                     @endisset
+                    </td>
                     <td>{{ $genre->created_at}}</td>
                    
-                    <td><a class="btn btn-xs btn-primary" data-trigger="modal" data-target="#edit-video"title="View video">Edit
+                    <td><a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit-genre{{$genre->id}}"title="Edit">Edit
                                       </a></td>
-                                    <td><a class="btn btn-xs btn-danger" href="#" title="Delete?" onclick="return confirm('Are you sure about this ?')">Delete
+                                    <td><a class="btn btn-xs btn-danger" href="{{ route('genre.delete', $genre->id)}}" title="Delete?" onclick="return confirm('Are you sure about this ?')">Delete
                                       </a></td>
                   </tr>
+                  @include('admin.edit-genre');
                   @endforeach
                   @endisset
               
@@ -73,16 +85,17 @@
               <span class="text-danger">{{ $errors->first('name')}}</span>
             @endif
           </div>
-          {{-- <div class="form-group">
-            <label for="exampleFormControlFile1">Title</label>
-            <input type="text" class="form-control"  name="title" >
-          </div>
+        
           <div class="form-group">
-            <label for="exampleFormControlFile1">Description</label>
-            <input type="text" class="form-control"  name="description" >
+            <label for="exampleFormControlFile1">User Types</label>
+            <select name="types[]" multiple class="form-control chosen-select">
+              <option value="basic">Basic</option>
+              <option value="standard">Standard</option>
+              <option value="premium">Premium</option>
+            </select>
           
           </div>
-          <div class="form-group">
+            {{--<div class="form-group">
             <label for="exampleFormControlFile1">Genre</label>
             <select class="form-control" name="genre_id">
               @foreach ($genres as $g)

@@ -17,18 +17,6 @@
 					</div>
 					<div class="x_content">
 
-						 <div class="col-md-6 col-sm-6 col-xs-12">
-							<a href="#" data-toggle="modal" data-target="#add-earning">
-								<div class="info-box bg-aqua"> <span class="info-box-icon"><i class="fa fa-fire"></i></span>
-									<div class="info-box-content"> <span class="info-box-text" style="margin-top: 10px"><b>Increase User's Earning</b></span> <span class="info-box-number"></span>
-										<div class="progress">
-											<div class="" style="width: 0%"></div>
-										</div>
-										<span class="progress-description"><b>Click To Increase</b></span> </div>
-									</div>
-								</a>
-							</div>
-
 						{{--	<div class="col-md-6 col-sm-6 col-xs-12">
 								<a href="/manage_hotels">
 									<div class="info-box bg-aqua"> <span class="info-box-icon"><i class="fa fa-hotel"></i></span>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Movie;
 use App\Genre;
+use App\FeaturedMovie;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $featured_movie = Movie::first();
+        $featured = FeaturedMovie::where('type', auth()->user()->type)->first();
+        $featured_movie = $featured ? $featured->movie : null;
         $genres = Genre::all();
         return view('home', compact('featured_movie', 'genres'));
     }

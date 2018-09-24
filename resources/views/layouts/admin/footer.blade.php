@@ -58,10 +58,17 @@
  <script src="{{asset("portal/vendors/pdfmake/build/vfs_fonts.js")}}"></script>
  <script src="{{asset("portal/vendors/validator/validator.js")}}"></script>
  <script src="{{asset("portal/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js")}}"></script>
- <script src="{{asset("portal/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js")}}"></script>
+ <script src="{{asset("portal/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js")}}">
+ 	
+ </script>
  <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+  <script src="{{asset('chosen/chosen.jquery.js')}}"></script>
+
+    <script type="text/javascript">
+      $('.chosen-select').chosen({ width: '100%', no_results_text: "Oops, No result matches your input:", height:'100%'});
+    </script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  @stack('scripts')

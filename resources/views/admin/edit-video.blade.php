@@ -18,10 +18,29 @@
 						</div>
 						<div class="form-group col-md-6">
 						<label for="exampleFormControlFile1">Poster</label>
-						<input type="file" class="form-control"  name="poster" required>
+						<input type="file" class="form-control"  name="poster">
 					
 						</div>
 						
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
+						<label for="rating">Rating</label>
+						 <select class="form-control chosen-select" name="rating">
+						 	<option value="">Select...</option>
+						 	<option value="Generel - (G)">Generel - (G)</option>
+						 	<option value="PG – Parental guidance">PG – Parental guidance</option>
+						 	<option value="PG-13">PG-13</option>
+						 	<option value="R - Restricted">R - Restricted</option>
+						 	<option value="NC-17 (No-one under 17)">NC-17 (No-one under 17)</option>
+						 	<option value="Unrated">Unrated</option>
+						 </select>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="year">Year</label>
+							<input type="text" class="form-control" value="{{$video->year}}" name="year">
+						
+						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-6">
@@ -30,21 +49,12 @@
 						
 						</div>
 						<div class="form-group col-md-6">
-							{{-- <label for="exampleFormControlFile1">ROI</label>
-							<input type="text" class="form-control"  name="roi" required> --}}
+							<label for="exampleFormControlFile1">Casts</label>
+							<textarea class="form-control" rows="4"  name="casts" required>{{$video->casts}}</textarea>
+						</div>
 						
-						</div>
 				    </div>
-					{{-- <div class="row">
-						<div class="form-group col-md-6">
-						<label for="exampleFormControlFile1">Weeks</label>
-						<input type="number" class="form-control"  name="weeks" required>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="exampleFormControlFile1">Duration</label>
-							<input type="number" class="form-control"  name="duration" required>
-						</div>
-					</div> --}}
+					
 					{{-- <div class="row">
 						<div class="form-group col-md-6">
 						<label for="exampleFormControlFile1">Type</label>

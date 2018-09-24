@@ -30,7 +30,7 @@
     <link href="{{asset("portal/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{asset("portal/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{asset("portal/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css")}}" rel="stylesheet"/>
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('chosen/chosen.css')}}">
     <style type="text/css">
         .star{
             color: red;

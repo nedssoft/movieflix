@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Genre;
 use App\Movie;
+use Hash;
+use App\FeaturedMovie;
 
 class AdminController extends Controller
 {
@@ -21,7 +23,7 @@ class AdminController extends Controller
 
     public function users()
     {
-    	$users = User::all();
+    	$users = User::latest()->get();
 
     	return view('admin.users', compact('users'));
     }
@@ -77,30 +79,35 @@ class AdminController extends Controller
         
 
         $this->validate($request, [
-        	'poster' => 'required|mimetypes:image/jpeg,image/jpg, image/png, image/gif',
+        	'poster' => 'nullable|mimetypes:image/jpeg,image/jpg, image/png, image/gif',
         	'title' => 'required',
         ]);
 
-        $poster = $request->file('poster');
-        $ext = $poster->getClientOriginalExtension();
+        if ($request->hasFile('poster')) {
+        	$poster = $request->file('poster');
+	        $ext = $poster->getClientOriginalExtension();
 
-        $destination = public_path('/posters/');
-        
-        $filename = str_slug($request->title).'-'.time().'-'.date('Y-m-d').'.'.$ext;
-        $url = asset('posters/'.$filename);
+	        $destination = public_path('/posters/');
+	        
+	        $filename = str_slug($request->title).'-'.time().'-'.date('Y-m-d').'.'.$ext;
+	        $url = asset('posters/'.$filename);
 
-        try {
-            $poster->move($destination, $filename);
-        } catch (\Exception $e) {
+	        try {
+	            $poster->move($destination, $filename);
+	        } catch (\Exception $e) {
 
-            report($e);
-            return back()->with('error','Poster failed to upload');
-            
+	            report($e);
+	            return back()->with('error','Poster failed to upload');
+	            
+	        }
         }
 
-        $movie->poster = $url;
+        $movie->poster = $request->hasFile('poster') ? $url : $movie->url;
         $movie->description = $request->description;
         $movie->title = $request->title;
+        $movie->year = $request->year;
+        $movie->casts = $request->casts;
+        $movie->rating = $request->rating;
 
         if ($movie->save()) {
            
@@ -110,24 +117,45 @@ class AdminController extends Controller
     }
     public function videos()
     {
-    	$genres = Genre::all();
-    	$videos = Movie::all();
+    	$genres = Genre::latest()->get();
+    	$videos = Movie::latest()->get();
 
     	return view('admin.videos', compact('genres', 'videos'));
     }
 
     public function addGenre(Request $request)
     {
+    	
+    
+    	$this->validate($request, [
+    		'types' => 'required',
+    		'name' => 'required',
+    	]);
     	$genre = new Genre();
     	$genre->name = $request->name;
+    	$genre->types = $request->types;
     	$genre->save();
 
     	return back()->with('success', 'Added');
     }
+    public function editGenre(Request $request, Genre $genre)
+    {
+    	
+    	$this->validate($request, [
+    		'types' => 'required',
+    		'name' => 'required',
+    	]);
+
+    	$genre->name = $request->name;
+    	$genre->types = $request->types;
+    	$genre->save();
+
+    	return back()->with('success', 'edited!');
+    }
 
     public function genres(Request $request)
     {
-    	$genres = Genre::all();
+    	$genres = Genre::latest()->get();
 
     	return view('admin.genres', compact('genres'));
     }
@@ -168,5 +196,82 @@ class AdminController extends Controller
     	}
 
     	return back()->with('error', 'Failed to delete');
+    }
+
+    public function addUser(Request $request)
+    {
+    	$this->validate($request, [
+    		'username' => 'required|string|max:255|unique:users',
+            'password' => 'required|string|min:4',
+    	]);
+
+	   $user = 	User::create([
+		    		'name' => $request->name,
+		    		'username' => $request->username,
+		    		'password' => Hash::make($request->password),
+		    		'type'     => $request->type ?: 'basic',
+		    		'email'   => $request->email?: null,
+	    		]);
+	   if ($user) {
+	   	return back()->with('success', 'User created');
+	   }
+	   	return back()->with('error', 'Failed to create user');
+
+    }
+
+    public function editUser(Request $request, User $user)
+    {
+    	$this->validate($request, [
+    		'username' => 'required|string|max:255',
+            'password' => 'nullable|string|min:4',
+    	]);
+
+    if ($request->username != $user->username) {
+	   $user->username = $request->username;
+
+    }
+	   $user->email = $request->email?: $user->email;
+	   $user->name	= $request->name ?: $user->name;
+	   $user->type	= $request->type ?: $user->type;
+	   $user->password = $request->password ? 
+	   					 Hash::make($request->password) : $user->password;
+	   
+	   if ($user->save()) {
+	   	return back()->with('success', 'User edited');
+	   }
+	   	return back()->with('error', 'Failed to edit user');
+
+    }
+
+    public function deleteGenre(Genre $genre)
+    {
+    	if (count($genre->movies) === 0) {
+
+    		$genre->delete();
+
+    		return back()->with('success', 'Deleted');
+    	}
+
+    	return back()->with('error', 'Could not delete genre');
+
+    }
+
+    public function setFeaturedMovie(Request $request)
+    {	
+    	$this->validate($request, [
+    		'type' => 'required',
+    		'movie_id' => 'required',
+    	]);
+    	$featured = new FeaturedMovie();
+
+    	$featured->type = $request->type;
+    	$featured->movie_id = $request->movie_id;
+
+    	if ($featured->save()) {
+
+    		return back()->with('success', 'faetured movie set for '. title_case($request->type). ' category');
+    	}
+
+    	return back()->with('error', 'failed');
     }
 }

@@ -86,7 +86,129 @@
 		</div>
 	</div>
 </div>
-<!-- VIDEO DETAILS HERE -->
+<div class="container" style="margin-top: 30px;">
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="row">
+				<div class="col-lg-2">
+					<img src="{{$movie->poster}}" style="height: 60px; margin:20px;" />
+				</div>
+				<div class="col-lg-10">
+					<!-- VIDEO TITLE -->
+					<h3>
+						{{$movie->title}}
+					</h3>
+					<!-- RATING CALCULATION -->
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-lg-4">
+			<!-- ADD OR DELETE FROM PLAYLIST -->
+			<span id="mylist_button_holder">
+			</span>
+			<span id="mylist_add_button" style="display:none;">
+			<a href="#" class="btn btn-danger btn-md" style="font-size: 16px; margin-top: 20px;" 
+				onclick=""> 
+			<i class="fa fa-plus"></i> Add to My list
+			</a>
+			</span>
+			<span id="mylist_delete_button" style="display:none;">
+			<a href="#" class="btn btn-default btn-md" style="font-size: 16px; margin-top: 20px;" 
+				onclick=""> 
+			<i class="fa fa-check"></i> Added to My list
+			</a>
+			</span>
+			<!-- MOVIE GENRE -->
+			<div style="margin-top: 10px;">
+				<strong>Genre</strong> : 
+				<a href="#">
+				{{ title_case($movie->genre->name) }}
+				</a>
+			</div>
+			<!-- MOVIE YEAR -->
+			<div>
+				<strong>Year</strong> : {{ $movie->year}}
+			</div>
+			<div>
+				<strong>Rating</strong> : {{ $movie->rating}}
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-top:20px;">
+		<div class="col-lg-12">
+			<div class="bs-component">
+				<ul class="nav nav-tabs">
+					<li class="active" style="width:33%;">
+						<a href="#about" data-toggle="tab">
+						About
+						</a>
+					</li>
+					<li style="width:33%;">
+						<a href="#cast" data-toggle="tab">
+						Cast
+						</a>
+					</li>
+					<li style="width:34%;">
+						<a href="#more" data-toggle="tab">
+						More
+						</a>
+					</li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<!-- TAB FOR TITLE -->
+					<div class="tab-pane active in" id="about">
+						<p>
+							{{ $movie->description}}
+						</p>
+					</div>
+					<!-- TAB FOR ACTORS -->
+					<div class="tab-pane " id="cast">
+						<p>
+							@php 
+								$casts = explode(',', $movie->casts);
+							@endphp
+
+							@if (count($casts) > 0) 
+								@foreach ($casts as $cast)
+									{{ title_case($cast)}}
+									@unless ($loop->last),@endunless
+								@endforeach
+							@endif
+						
+						</p>
+					</div>
+					<!-- TAB FOR SAME CATEGORY MOVIES -->
+					<div class="tab-pane  " id="more">
+						<p>
+						<div class="content">
+							<div class="grid">
+								@if (!is_null($movie->related()))
+									@foreach ($movie->related() as $related)
+
+										@php 
+
+										$title	=	$related['title'];
+										$link	=	route('view.movie', $related->id);
+										$thumb	=	$related->poster;
+										@endphp
+				
+										@include('thumb')
+									@endforeach
+								@endif
+										
+							</div>
+						</div>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr style="border-top:1px solid #333;">
+	
+</div>
 
 
 @endsection
