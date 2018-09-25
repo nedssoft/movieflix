@@ -62,10 +62,22 @@
 				  height: 100%;
 				}
 				</style>
+				@if (strtolower($movie->genre->name) === 'live tv')
 				<div class="intrinsic-container intrinsic-container-16x9">
-  					<iframe src="{{$movie->url}}" allowfullscreen style="border:0px; width:100%; height:100%;"></iframe>
+  					<video poster="{{ $movie->poster}}"
+  						allowfullscreen style="border:0px; width:100%; height:100%;" controls> 
+  						<source src="{{$movie->url}}" type="application/x-mpegURL">	 
+  					{{-- 	<img src="{{$movie->poster}}"> --}}
+  						Your browser does not support the video tag, kindly update or change your browser!	
+  					</video>
 				</div>
 				
+				@else
+					<div class="intrinsic-container intrinsic-container-16x9">
+  					<iframe src="{{$movie->url}}" allowfullscreen style="border:0px; width:100%; height:100%;"></iframe>
+					</div>
+				
+				@endif
 				<!-- loads jwplayer as video player -->
 			{{-- 	<script src="https://content.jwplatform.com/libraries/O7BMTay5.js"></script>
 				<div id="video_player_div">{{ $movie->title}}</div>

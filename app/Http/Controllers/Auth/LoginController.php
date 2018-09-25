@@ -57,7 +57,7 @@ class LoginController extends Controller
              $user->login = $user->login - 1;
              auth()->logout($user);
 
-             abort(403);
+             return redirect()->back()->with('message', 'You are already have another loggin session , Note: you can only have one login session at a time');
         }
     }
 

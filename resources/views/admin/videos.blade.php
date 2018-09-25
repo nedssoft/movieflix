@@ -12,6 +12,7 @@
 					<div class="x_title d-flex">
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#upload">Upload Movie</a>
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#featured-movie">Set Featured Movie</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#live-tv">Upload Live TV</a>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -97,6 +98,52 @@
 						<select class="form-control" name="genre_id">
 							@foreach ($genres as $g)
 							<option value="{{ $g->id}}">{{ $g->name}}</option>
+							@endforeach
+						</select> 
+					
+					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" id="submit-button" class="btn btn-primary">Save changes</button>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="live-tv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Live TV</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form method="POST" action="{{ route('admin.tv.upload')}}">
+					@csrf
+					<div class="form-group">
+						<label for="exampleFormControlFile1">URL</label>
+						<input type="text-danger" class="form-control" id="exampleFormControlFile1" name="url" >
+						@if ($errors->has('url'))
+							<span class="text-danger">{{ $errors->first('url')}}</span>
+						@endif
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Title</label>
+						<input type="text" class="form-control"  name="title" >
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Description</label>
+						<input type="text" class="form-control"  name="description" >
+					
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Genre</label>
+						<select class="form-control" name="genre_id">
+							@foreach ($genres as $g)
+							<option value="{{ $g->id}}" {{strtolower($g->name) === strtolower('Live TV') ? 'selected' : ''}}>{{ $g->name}}</option>
 							@endforeach
 						</select> 
 					

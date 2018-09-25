@@ -38,8 +38,8 @@ class AdminController extends Controller
     public function uploadVideo(Request $request)
     {
         $this->validate($request, [
-        	'video' => 'required|mimetypes:video/mp4,video/mpeg',
         	'title' => 'required',
+            'video' => 'required',
         ]);
        
         $video = $request->file('video');
@@ -70,6 +70,27 @@ class AdminController extends Controller
         if ($newVideo) {
            
             return back()->with('success', 'Uploaded');
+        }
+            return back()->with('error', 'failed to upload');
+    }
+
+    public function uploadLiveTv(Request $request)
+    {
+        $this->validate($request, [
+            'title'=> 'required',
+            'url' => 'required',
+        ]);
+        $newVideo = new Movie();
+
+        $newVideo->genre_id = $request->genre_id;
+        $newVideo->url = $request->url;
+        $newVideo->description = $request->description;
+        $newVideo->title = $request->title;
+        $newVideo->save();
+
+         if ($newVideo) {
+           
+            return back()->with('success', 'Live TV added');
         }
             return back()->with('error', 'failed to upload');
     }
