@@ -95,7 +95,7 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlFile1">Genre</label>
-						<select class="form-control" name="genre_id">
+						<select class="form-control chosen-select" name="genre_id">
 							@foreach ($genres as $g)
 							<option value="{{ $g->id}}">{{ $g->name}}</option>
 							@endforeach
@@ -141,7 +141,7 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleFormControlFile1">Genre</label>
-						<select class="form-control" name="genre_id">
+						<select class="form-control chosen-select" name="genre_id">
 							@foreach ($genres as $g)
 							<option value="{{ $g->id}}" {{strtolower($g->name) === strtolower('Live TV') ? 'selected' : ''}}>{{ $g->name}}</option>
 							@endforeach

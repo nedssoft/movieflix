@@ -55,7 +55,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" name="type">
+                                <select class="form-control chosen-select" name="type">
                                   <option value="basic" {{ $user->type === 'basic' ? 'selected' : ''}}>Basic</option>
                                   <option value="standard" {{ $user->type === 'standard' ? 'selected' : ''}}>Standard</option>
                                   <option value="premium" {{ $user->type === 'premium' ? 'selected' : ''}}>Premium</option>
