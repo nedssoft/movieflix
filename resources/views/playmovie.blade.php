@@ -63,15 +63,23 @@
 				}
 				</style>
 				@if (strtolower($movie->genre->name) === 'live tv')
-				<div class="intrinsic-container intrinsic-container-16x9">
-  					<video poster="{{ $movie->poster}}"
-  						allowfullscreen style="border:0px; width:100%; height:100%;" controls> 
+
+				@push('scripts')
+					 <script src="{{ asset('plugins/flowplayer.min.js')}}"></script>
+					 <script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.light.min.js"></script>
+				@endpush
+				@push('styles')
+					<link rel="stylesheet" href="{{ asset('plugins/skin/skin.css')}}">
+				@endpush
+				<div class="intrinsic-container intrinsic-container-16x9 flowplayer" data-swf="flowplayer.swf" data-ratio="0.4167">
+  					<video style="border:0px; width:100%; height:100%;"> 
   						<source src="{{$movie->url}}" type="application/x-mpegURL">	 
   					{{-- 	<img src="{{$movie->poster}}"> --}}
   						Your browser does not support the video tag, kindly update or change your browser!	
   					</video>
 				</div>
-				
+	
+
 				@else
 					<div class="intrinsic-container intrinsic-container-16x9">
   					<iframe src="{{$movie->url}}" allowfullscreen style="border:0px; width:100%; height:100%;"></iframe>

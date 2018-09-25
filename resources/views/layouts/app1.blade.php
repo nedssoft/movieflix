@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('frontend/flixer/fontawesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend/flixer/hovercss/demo.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('frontend/flixer/hovercss/set1.css')}}" />
+    @stack('styles')
     <script src="{{asset('frontend/flixer/jquery-1.10.2.min.js')}}"></script>
     <script src="{{asset('frontend/flixer/bootstrap.min.js')}}" ></script>
     <style>
@@ -33,6 +34,7 @@
       <p>Designed & Developed by <a href="#" rel="nofollow">Harryson Daniels</a>. <i class="fa fa-copyright"></i> Movieflix Ng 2018.</p>
     </div>
   </div>
+  @stack('scripts')
 </footer>
 
 </body>
