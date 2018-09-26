@@ -7,7 +7,8 @@
     <title>Admin Panel</title>
 
     <!-- faveicon start   -->
-    <link rel="icon" href="{{asset("css/bundles/frontend/images/u.png")}}">
+    <link rel="shortcut icon" href="{{asset('img/item_thumb.png')}}">
+   
     
   <!-- Bootstrap -->
     <link href="{{asset("portal/vendors/bootstrap/dist/css/bootstrap.min.css")}}" rel="stylesheet">

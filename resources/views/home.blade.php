@@ -67,5 +67,29 @@
 @endif
 @endforeach
 @endisset
+@if (count($music))
+	@foreach ( $music as $mu)
+	<div class="row" style="margin:0px 20px;">
+		<h4 style="color: #000">{{ $mu->name}} Music</h4>
+		<div class="content">
+			<div class="grid">
+				@if ($mu->movies())
+					@foreach ($mu->movies() as $m)
+						@php
+						$title	=	$m['title'];
+						$link	=	route('view.movie', $m->id);
+						$thumb	=	$m->poster;
+						
+						@endphp
+						@include('thumb')
+				@endforeach
+				@endif
+					
+					
+			</div>
+		</div>
+	</div>
+	@endforeach
+@endif
 
 @endsection

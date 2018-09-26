@@ -40,8 +40,7 @@
          </li>  
         <li><a href="{{ route('users')}}"><i class="fa fa-users"></i> Users </a></li>
         <li><a href="{{ route('genres')}}" ><i class="fa fa-briefcase"></i>Genre</a></li>
-        <li><a href="#"><i class="fa fa-briefcase"></i> B</a></li>
-        <li><a href="#"><i class="fa fa-exclamation-triangle"></i>C</a></li>
+        
 
 
 

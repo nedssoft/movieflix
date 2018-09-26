@@ -29,11 +29,13 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('videos', 'AdminController@videos')->name('videos');
     Route::get('genres', 'AdminController@genres')->name('genres');
     Route::post('upload/video', 'AdminController@uploadVideo')->name('admin.video.upload');
+    Route::post('upload/music/video', 'AdminController@uploadMusicVideo')->name('music.video.upload');
     Route::post('upload/live-tv', 'AdminController@uploadLiveTv')->name('admin.tv.upload');
     Route::post('featured/movie', 'AdminController@setFeaturedMovie')->name('featured.movie');
     Route::post('movie/edit/{movie}', 'AdminController@editVideo')->name('admin.edit.video');
     Route::post('genre/edit/{genre}', 'AdminController@editGenre')->name('admin.genre.edit');
     Route::post('genre/add', 'AdminController@addGenre')->name('admin.genre.add');
+    Route::post('music/sub-genre/add', 'AdminController@addMusicSubGenre')->name('music-sub-genre.add');
     Route::get('movie/{movie}/delete', 'AdminController@deleteMovie')->name('admin.movie.delete');
     Route::get('genre/{genre}/delete', 'AdminController@deleteGenre')->name('genre.delete');
 });

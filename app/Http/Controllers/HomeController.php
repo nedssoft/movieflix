@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Movie;
 use App\Genre;
 use App\FeaturedMovie;
+use App\MusicSubGenre;
 
 class HomeController extends Controller
 {
@@ -25,11 +26,21 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {  
+        
+        $music =  collect(new \StdClass());
+
+        $muzic = Genre::whereName('Music')->first();
+        if (in_array(auth()->user()->type, (array)$muzic->types)) {
+
+            $music = MusicSubGenre::all();
+
+        }
+    
         $featured = FeaturedMovie::where('type', auth()->user()->type)->first();
         $featured_movie = $featured ? $featured->movie : null;
-        $genres = Genre::all();
-        return view('home', compact('featured_movie', 'genres'));
+        $genres = Genre::where('name', '!=', 'Music')->get();
+        return view('home', compact('featured_movie', 'genres', 'music'));
     }
 
     public function playMovie(Movie $movie)

@@ -8,6 +8,7 @@ use App\Genre;
 use App\Movie;
 use Hash;
 use App\FeaturedMovie;
+use App\MusicSubGenre;
 
 class AdminController extends Controller
 {
@@ -65,6 +66,46 @@ class AdminController extends Controller
         $newVideo->url = $url;
         $newVideo->description = $request->description;
         $newVideo->title = $request->title;
+        $newVideo->save();
+
+        if ($newVideo) {
+           
+            return back()->with('success', 'Uploaded');
+        }
+            return back()->with('error', 'failed to upload');
+    }
+
+    public function uploadMusicVideo(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'video' => 'required',
+        ]);
+      
+        $video = $request->file('video');
+        $ext = $video->getClientOriginalExtension();
+
+        $destination = public_path('/movies/music/');
+        
+        $filename = str_slug($request->title).'-'.time().'-'.date('Y-m-d').'.'.$ext;
+        $url = asset('movies/music/'.$filename);
+
+        try {
+            $video->move($destination, $filename);
+        } catch (\Exception $e) {
+
+            report($e);
+            return back()->with('error','Video failed to upload');
+            
+        }
+
+        $newVideo = new Movie();
+
+        $newVideo->genre_id = $request->genre_id;
+        $newVideo->url = $url;
+        $newVideo->description = $request->description;
+        $newVideo->title = $request->title;
+        $newVideo->music_id = $request->music_id;
         $newVideo->save();
 
         if ($newVideo) {
@@ -139,9 +180,10 @@ class AdminController extends Controller
     public function videos()
     {
     	$genres = Genre::latest()->get();
-    	$videos = Movie::latest()->get();
+        $videos = Movie::latest()->get();
+    	$music = MusicSubGenre::latest()->get();
 
-    	return view('admin.videos', compact('genres', 'videos'));
+    	return view('admin.videos', compact('genres', 'videos', 'music'));
     }
 
     public function addGenre(Request $request)
@@ -294,5 +336,14 @@ class AdminController extends Controller
     	}
 
     	return back()->with('error', 'failed');
+    }
+
+    public function addMusicSubGenre(Request $request)
+    {
+        $this->validate($request, ['name' => 'required']);
+
+        $sub = MusicSubGenre::create(['name' => $request->name]);
+
+        return back()->with('success', 'added!');
     }
 }
