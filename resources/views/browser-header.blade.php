@@ -83,12 +83,12 @@
 				</li>
 			</ul>
 			<!-- SEARCH FORM -->
-			<form class="navbar-form navbar-right" method="post" action="#">
+			<form class="navbar-form navbar-right"  action="#">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Titles, peoples, genres" 
 						style="background-color: #000; border: 1px solid #808080;" name="search_key">
 				</div>
-				<button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+				<button type="submit" onsubmit="return false" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
 			</form>
 		</div>
 	</div>

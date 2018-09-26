@@ -46,19 +46,19 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {   
-        $user =  auth()->user();
+        // $user =  auth()->user();
 
-        $user->login++;
-        $user->save();
+        // $user->login++;
+        // $user->save();
   
 
-        if (auth()->user()->login > 1) {
+        // if (auth()->user()->login > 1) {
             
-             $user->login = $user->login - 1;
-             auth()->logout($user);
+        //      $user->login = $user->login - 1;
+        //      auth()->logout($user);
 
-             return redirect()->back()->with('message', 'You are already have another loggin session , Note: you can only have one login session at a time');
-        }
+        //      return redirect()->back()->with('message', 'You are already have another loggin session , Note: you can only have one login session at a time');
+        // }
     }
 
      /**
@@ -69,9 +69,9 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $user = auth()->user();
-        $user->login--;
-        $user->save();
+        // $user = auth()->user();
+        // $user->login--;
+        // $user->save();
         $this->guard()->logout();
 
         $request->session()->invalidate();
