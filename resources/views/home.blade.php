@@ -12,6 +12,7 @@
 </style>
 <!-- TOP FEATURED SECTION -->
 
+@isset($featured_movie)
 <div style="height:85vh;width:100%;background-image: url({{ $featured_movie->poster }}); background-size:cover;">
 	<div style="font-size: 85px;font-weight: bold;clear: both;padding: 200px 0px 0px 50px;color: #fff;">
 		{{$featured_movie->title}}
@@ -39,6 +40,7 @@
 		</span>
 	</div>
 </div>
+@endisset
 
 <!-- MY LIST, GENRE WISE LISTING & SLIDER -->
 @isset ($genres)
