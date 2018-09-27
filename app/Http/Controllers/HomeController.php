@@ -31,7 +31,8 @@ class HomeController extends Controller
         $music =  collect(new \StdClass());
 
         $muzic = Genre::whereName('Music')->first();
-        if (in_array(auth()->user()->type, (array)$muzic->types)) {
+        
+        if ($muzic && in_array(auth()->user()->type, (array)$muzic->types)) {
 
             $music = MusicSubGenre::all();
 
