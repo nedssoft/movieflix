@@ -7,6 +7,7 @@ use App\Movie;
 use App\Genre;
 use App\FeaturedMovie;
 use App\MusicSubGenre;
+use DB;
 
 class HomeController extends Controller
 {
@@ -47,5 +48,13 @@ class HomeController extends Controller
     public function playMovie(Movie $movie)
     {
         return view('playmovie', compact('movie'));
+    }
+
+    public function search(Request $request)
+    {   
+        $search = $request->search_key;
+        $genres = DB::table('genres')->where('name', '=', `%{$search}%`)->get();
+
+        dd($genres);
     }
 }

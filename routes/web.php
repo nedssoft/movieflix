@@ -44,3 +44,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/movie/{movie}/play', 'HomeController@playMovie')->name('view.movie');
+    Route::get('search', 'HomeController@search')->name('search');

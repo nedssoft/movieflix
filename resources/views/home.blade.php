@@ -71,7 +71,8 @@
 @endisset
 @if (count($music))
 	@foreach ( $music as $mu)
-	<div class="row" style="margin:0px 20px;">
+	@if ($mu->movies())
+		<div class="row" style="margin:0px 20px;">
 		<h4 style="color: #000">{{ $mu->name}} Music</h4>
 		<div class="content">
 			<div class="grid">
@@ -91,6 +92,7 @@
 			</div>
 		</div>
 	</div>
+	@endif
 	@endforeach
 @endif
 

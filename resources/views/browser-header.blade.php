@@ -83,7 +83,7 @@
 				</li>
 			</ul>
 			<!-- SEARCH FORM -->
-			<form class="navbar-form navbar-right"  action="#">
+			<form class="navbar-form navbar-right" method="GET" action="{{route('search')}}">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Titles, peoples, genres" 
 						style="background-color: #000; border: 1px solid #808080;" name="search_key">

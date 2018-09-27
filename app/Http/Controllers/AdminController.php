@@ -226,21 +226,24 @@ class AdminController extends Controller
     public function deleteMovie(Movie $movie, Request $request)
     {	
     	
-    	$file = explode(url('/'), $movie->url);
+    	if ($movie->genre->name != 'Live TV') {
 
-    	$file_path= public_path($file[1]);
+            $file = explode(url('/'), $movie->url);
 
-    	if ($file_path) {
+            $file_path= public_path($file[1]);
 
-    		try {
-    			unlink($file_path);
-    		} catch (\Exception $e) {
+            if ($file_path) {
 
-    			return back()->with('error', $e->getMessage());
-    			
-    		}
-    	}
+                try {
+                    unlink($file_path);
+                } catch (\Exception $e) {
 
+                    return back()->with('error', $e->getMessage());
+                    
+                }
+            }
+
+        }
     	if ($movie->poster){
 
     		$poster_path = public_path(explode(url('/'), $movie->poster)[1]);
@@ -345,5 +348,10 @@ class AdminController extends Controller
         $sub = MusicSubGenre::create(['name' => $request->name]);
 
         return back()->with('success', 'added!');
+    }
+
+    public function search(Request $request)
+    {
+        dd($request->all());
     }
 }
