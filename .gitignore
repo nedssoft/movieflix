@@ -4,7 +4,7 @@
 /public/movies
 /public/posters
 /public/audio
-/public/audio/poster
+/public/audio/posters
 /storage/*.key
 /vendor
 /.idea

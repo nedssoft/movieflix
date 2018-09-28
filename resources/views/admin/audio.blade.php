@@ -13,8 +13,7 @@
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#user-type">Set Use Type</a>
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#add-genre">Add Genre</a>
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#upload">Upload Audio</a>
-						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#music">Upload Music</a>
-						<div class="clearfix"></div>
+						
 					</div>
 					<div class="x_content">
 						<table id="datatable" class="table table-striped table-bordered">
