@@ -4,9 +4,15 @@
 @php $page_name = 'home'; @endphp
 @include('browser-header')
 <div class="row" style="margin:80px 60px 20px 60px;">
+	@if (count($movies))
 	<h4>
 		Search result for : {{$_GET['search_key']}}
 	</h4>
+	@else
+	<h4>
+		No result for : {{$_GET['search_key']}}
+	</h4>
+	@endif
 	<div class="content">
 		<div class="grid">
 				@isset($movies)
