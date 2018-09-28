@@ -226,7 +226,7 @@ class AdminController extends Controller
     public function deleteMovie(Movie $movie, Request $request)
     {	
     	
-    	if ($movie->genre->name != 'Live TV') {
+    	if (strtolower($movie->genre->name) != 'live tv') {
 
             $file = explode(url('/'), $movie->url);
 

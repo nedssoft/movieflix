@@ -53,8 +53,24 @@ class HomeController extends Controller
     public function search(Request $request)
     {   
         $search = $request->search_key;
-        $genres = DB::table('genres')->where('name', '=', `%{$search}%`)->get();
+        $result = collect();
+        $genres = Genre::where('name', 'LIKE', '%'.$search.'%')->get();
+        $movies = Movie::where('title', 'LIKE', '%'.$search.'%')->get();
+        $genres = $genres->filter(function($g){
+            return in_array(auth()->user()->type, (array)$g->types);
+        })->map(function($ge) use ($result) {
 
-        dd($genres);
+           return  $result->push($ge->movies);
+
+        })->flatten();
+
+
+        $movies = $movies->filter(function($m){
+            return in_array(auth()->user()->type, (array)$m->genre->types);
+        });
+
+        $data['movies'] =  $genres->merge($movies);
+
+        return view('search', $data);
     }
 }

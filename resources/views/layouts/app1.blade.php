@@ -19,7 +19,7 @@
 	</style>
 </head>
 
-<body style="background-color: #f3f3f3">
+<body style="background-color: #000">
 	@yield('content')
 
 <footer>

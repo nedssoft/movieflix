@@ -47,7 +47,7 @@
 	@foreach ($genres as $row)
 	@if (count($row->movies)> 0 && in_array(auth()->user()->type, (array)$row->types))
 <div class="row" style="margin:0px 20px;">
-	<h4 style="color: #000">{{ $row->name}}</h4>
+	<h4 style="color: #fff">{{ $row->name}}</h4>
 	<div class="content">
 		<div class="grid">
 			@isset ($row->movies)
@@ -73,7 +73,7 @@
 	@foreach ( $music as $mu)
 	@if ($mu->movies())
 		<div class="row" style="margin:0px 20px;">
-		<h4 style="color: #000">{{ $mu->name}} Music</h4>
+		<h4 style="color: #fff">{{ $mu->name}} Music</h4>
 		<div class="content">
 			<div class="grid">
 				@if ($mu->movies())
