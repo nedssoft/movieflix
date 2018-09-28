@@ -38,10 +38,18 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post('music/sub-genre/add', 'AdminController@addMusicSubGenre')->name('music-sub-genre.add');
     Route::get('movie/{movie}/delete', 'AdminController@deleteMovie')->name('admin.movie.delete');
     Route::get('genre/{genre}/delete', 'AdminController@deleteGenre')->name('genre.delete');
+    Route::get('audio', 'AdminController@audio')->name('audio');
+    Route::post('audio/type', 'AdminController@audioType')->name('audio.type.add');
+    Route::post('audio/genre', 'AdminController@audioGenre')->name('audio.genre.add');
+    Route::post('audio/upload', 'AdminController@audioUpload')->name('audio.upload');
+    Route::post('audio/{audio}/edit', 'AdminController@audioUpdate')->name('audio.edit');
+    Route::get('audio/{audio}/delete', 'AdminController@audioDelete')->name('audio.delete');
+    Route::get('audio/{audio}/{name}/play', 'AdminController@playAudio')->name('play.audio');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/movie/{movie}/play', 'HomeController@playMovie')->name('view.movie');
+Route::get('/movie/{movie}/{title}/play', 'HomeController@playMovie')->name('view.movie');
     Route::get('search', 'HomeController@search')->name('search');
+Route::get('audio/{audio}/{name}/play', 'HomeController@playAudio')->name('play.audio');

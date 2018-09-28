@@ -54,7 +54,7 @@
 				  padding-bottom: 75%;
 				}
 
-				.intrinsic-container iframe {
+				.intrinsic-container video {
 				  position: absolute;
 				  top:0;
 				  left: 0;
@@ -82,7 +82,7 @@
 
 				@else
 					<div class="intrinsic-container intrinsic-container-16x9">
-  					<iframe src="{{$movie->url}}" allowfullscreen style="border:0px; width:100%; height:100%;"></iframe>
+  					<video src="{{$movie->url}}" allowfullscreen style="border:0px; width:100%; height:100%;" controlsList="nodownload" autoplay controls></video>
 					</div>
 				
 				@endif
@@ -207,14 +207,17 @@
 								@if (!is_null($movie->related()))
 									@foreach ($movie->related() as $related)
 
+										@if (in_array(auth()->user()->type, (array)$related->genre->types) && $related->id !== $movie->id)
+
 										@php 
 
 										$title	=	$related['title'];
-										$link	=	route('view.movie', $related->id);
+										$link	=	route('view.movie', [$related->id, str_slug($related->title)]);
 										$thumb	=	$related->poster;
 										@endphp
 				
 										@include('thumb')
+										@endif
 									@endforeach
 								@endif
 										

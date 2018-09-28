@@ -9,6 +9,9 @@ use App\Movie;
 use Hash;
 use App\FeaturedMovie;
 use App\MusicSubGenre;
+use App\AudioUserType;
+use App\AudioGenre;
+use App\Audio;
 
 class AdminController extends Controller
 {
@@ -164,7 +167,7 @@ class AdminController extends Controller
 	        }
         }
 
-        $movie->poster = $request->hasFile('poster') ? $url : $movie->url;
+        $movie->poster = $request->hasFile('poster') ? $url : $movie->poster;
         $movie->description = $request->description;
         $movie->title = $request->title;
         $movie->year = $request->year;
@@ -353,5 +356,155 @@ class AdminController extends Controller
     public function search(Request $request)
     {
         dd($request->all());
+    }
+
+    public function audio()
+    {   
+        $types = AudioUserType::first();
+        $genres = AudioGenre::all();
+        $audios = Audio::latest()->get();
+        $data['genre'] = $types;
+        $data['genres'] = $genres;
+        $data['audios'] = $audios;
+
+
+        return view('admin.audio', $data);
+    }
+
+    public function audioType(Request $request)
+    {   
+        $this->validate($request, ['types' => 'required']);
+        $exists = AudioUserType::first();
+
+        if ($exists) {
+
+            $u = $exists->update(['types' => $request->types]);
+
+            if ($u) return back()->with('success', 'updated');
+            return back()->with('error', 'failed');
+        }
+
+
+        $new = AudioUserType::create([
+
+                    'types' => $request->types
+                ]);
+        if ($new) return back()->with('success', 'Added');
+
+        return back()->with('error', 'failed');
+    }
+
+    public function audioGenre(Request $request)
+    {   
+        $this->validate($request, ['name' => 'required']);
+
+        $new = AudioGenre::firstOrCreate(['name' => $request->name]);
+
+        if ($new) return back()->with('success', 'Added');
+
+        return back()->with('error', 'failed');
+    }
+
+    public function audioUpload(Request $request)
+    {
+
+        $this->validate($request, [
+            'name' => 'required',
+            'audio' => 'required|mimetypes:audio/*',
+        ]);
+      
+        $audio = $request->file('audio');
+        $ext = $audio->getClientOriginalExtension();
+
+        $destination = public_path('/audio/');
+        
+        $filename = str_slug($request->name).'-'.time().'-'.date('Y-m-d').'.'.$ext;
+        $url = asset('audio/'.$filename);
+
+        try {
+            $audio->move($destination, $filename);
+        } catch (\Exception $e) {
+
+            report($e);
+            return back()->with('error','audio failed to upload');
+            
+        }
+
+        $newAudio = new Audio();
+
+        $newAudio->genre_id = $request->genre_id;
+        $newAudio->url = $url;
+        $newAudio->description = $request->description;
+        $newAudio->name = $request->name;
+        $newAudio->author = $request->author;
+        $newAudio->year = $request->year;
+        $newAudio->save();
+
+        if ($newAudio) {
+           
+            return back()->with('success', 'Uploaded');
+        }
+            return back()->with('error', 'failed to upload');
+    }
+
+    public function audioUpdate(Request $request, Audio $audio)
+    {   
+        $this->validate($request, [
+            'poster' => 'nullable|mimetypes:image/jpeg,image/jpg, image/png, image/gif',
+            'name' => 'required',
+        ]);
+
+        $url = '';
+        if ($request->hasFile('poster')) {
+            $poster = $request->file('poster');
+            $ext = $poster->getClientOriginalExtension();
+
+            $destination = public_path('/audio/posters/');
+            
+            $filename = str_slug($request->name).'-'.time().'-'.date('Y-m-d').'.'.$ext;
+            $url = asset('audio/posters/'.$filename);
+
+            try {
+                $poster->move($destination, $filename);
+            } catch (\Exception $e) {
+
+                report($e);
+                return back()->with('error','Poster failed to upload');
+                
+            }
+        }
+
+        $data = $request->all();
+        $data['poster'] = $request->hasFile('poster') ? $url : $audio->poster;
+        $updated = $audio->update($data);
+
+        if ($updated) {
+           
+            return back()->with('success', 'Updated');
+        }
+            return back()->with('error', 'failed to update');
+    }
+
+    public function audioDelete(Audio $audio)
+    {
+
+        $file = explode(url('/'), $audio->url);
+
+        $file_path= public_path($file[1]);
+
+        if ($file_path) {
+
+            try {
+                unlink($file_path);
+            } catch (\Exception $e) {
+
+                return back()->with('error', $e->getMessage());
+                
+            }
+        }
+
+        if ($audio->delete()) return back()->with('success', 'deleted');
+
+        return back()->with('error', 'failed');
     }
 }

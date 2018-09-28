@@ -19,7 +19,7 @@
 		<div style="font-size: 30px; letter-spacing: .2px; color: #fff; font-weight: 400;">
 			{{ $featured_movie->description}}
 		</div>
-		<a href="{{ route('view.movie',$featured_movie->id)}}" 
+		<a href="{{ route('view.movie',[$featured_movie->id, str_slug($featured_movie->title)])}}" 
 			class="btn btn-danger btn-lg" style="font-size: 20px;"> 
 		<b><i class="fa fa-play"></i> PLAY</b>
 		</a>
@@ -47,14 +47,14 @@
 	@foreach ($genres as $row)
 	@if (count($row->movies)> 0 && in_array(auth()->user()->type, (array)$row->types))
 <div class="row" style="margin:0px 20px;">
-	<h4 style="color: #fff">{{ $row->name}}</h4>
+	<h3 style="color: #fff">{{ $row->name}}</h3>
 	<div class="content">
 		<div class="grid">
 			@isset ($row->movies)
 				@foreach ($row->movies as $m)
 					@php
 					$title	=	$m['title'];
-					$link	=	route('view.movie', $m->id);
+					$link	=	route('view.movie', [$m->id, str_slug($m->title)]);
 					$thumb	=	$m->poster;
 					
 					@endphp
@@ -73,14 +73,14 @@
 	@foreach ( $music as $mu)
 	@if ($mu->movies())
 		<div class="row" style="margin:0px 20px;">
-		<h4 style="color: #fff">{{ $mu->name}} Music</h4>
+		<h3 style="color: #fff">{{ $mu->name}} Music</h3>
 		<div class="content">
 			<div class="grid">
 				@if ($mu->movies())
 					@foreach ($mu->movies() as $m)
 						@php
 						$title	=	$m['title'];
-						$link	=	route('view.movie', $m->id);
+						$link	=	route('view.movie', [$m->id, str_slug($m->title)]);
 						$thumb	=	$m->poster;
 						
 						@endphp
@@ -89,6 +89,30 @@
 				@endif
 					
 					
+			</div>
+		</div>
+	</div>
+	@endif
+	@endforeach
+@endif
+
+@if (count($audio_genres))
+	@foreach ( $audio_genres as $a)
+	@if (count($a->audios))
+		<div class="row" style="margin:0px 20px;">
+		<h3 style="color: #fff">{{ $a->name}} | Audio Music</h3>
+		<div class="content">
+			<div class="grid">
+				
+					@foreach ($a->audios as $audio)
+						@php
+						$name	=	$audio['name'];
+						$link	=	route('play.audio', [$audio->id, str_slug($name)]);
+						$thumb	=	$audio->poster;
+						
+						@endphp
+						@include('audio-thumb')
+				@endforeach		
 			</div>
 		</div>
 	</div>

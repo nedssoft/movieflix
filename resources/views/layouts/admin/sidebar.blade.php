@@ -40,6 +40,7 @@
          </li>  
         <li><a href="{{ route('users')}}"><i class="fa fa-users"></i> Users </a></li>
         <li><a href="{{ route('genres')}}" ><i class="fa fa-briefcase"></i>Genre</a></li>
+        <li><a href="{{ route('audio')}}" ><i class="fa fa-play"></i>Audio</a></li>
         
 
 

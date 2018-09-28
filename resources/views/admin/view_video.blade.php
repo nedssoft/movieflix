@@ -18,8 +18,7 @@
             <div class="col-md-6 col-sm-10 col-xs-12">
              
               <video src="{{$video->url}}" width="300px" height="200px" controls></video>
-              <a class="btn btn-xs btn-primary" href="{{ route('confirm.video', $video->id)}}" title="Confirm Video">Confrim
-                                      </a>
+             
           </div>
           
         </div>
