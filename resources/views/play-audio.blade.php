@@ -2,7 +2,9 @@
 
 @section('content')
 @php $page_name = 'playmovie'; @endphp
+@section('header')
 @include('browser-header')
+@endsection
 
 
 <style>

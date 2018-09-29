@@ -70,6 +70,20 @@ class HomeController extends Controller
         $result = collect();
         $genres = Genre::where('name', 'LIKE', '%'.$search.'%')->get();
         $movies = Movie::where('title', 'LIKE', '%'.$search.'%')->get();
+        
+        $audios = collect();
+
+         $audioTypes = AudioUserType::first();
+
+        if ($audioTypes) {
+
+            $types = $audioTypes->types;
+
+            if (in_array(auth()->user()->type, $types)) {
+
+                $audios = Audio::where('name', 'LIKE', '%'.$search.'%')->get();
+            }
+        }
         $genres = $genres->filter(function($g){
             return in_array(auth()->user()->type, (array)$g->types);
         })->map(function($ge) use ($result) {
@@ -84,6 +98,7 @@ class HomeController extends Controller
         });
 
         $data['movies'] =  $genres->merge($movies);
+        $data['audios'] = $audios;
 
         return view('search', $data);
     }

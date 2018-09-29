@@ -38,15 +38,16 @@
 						Movie <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="themes">
-						@isset($movies)
-						@foreach ($movies as $m)
+						@if(movies())
+						@foreach (movies() as $m)
 							
-						<li><a href="{{ route('view.movie', $m->id)}}">
+						<li><a href="{{ route('view.movie', [$m->id, str_slug($m->title)])}}">
 						 {{ $m->title}}
 							</a>
 						</li>
+					
 						@endforeach
-						@endisset
+						@endif
 					</ul>
 				</li>
 				<!-- TV SERIES GENRE WISE-->
@@ -55,7 +56,16 @@
 						Tv Serial <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="themes">
-						
+						@if(liveTv())
+						@foreach (liveTv() as $m)
+							
+						<li><a href="{{ route('view.movie', [$m->id, str_slug($m->title)])}}">
+						 {{ $m->title}}
+							</a>
+						</li>
+					
+						@endforeach
+						@endif
 					</ul>
 				</li>
 				<!-- MY LIST -->

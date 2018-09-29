@@ -1,9 +1,14 @@
 
 
 @extends('layouts.app1')
-@section('content')
 	@php $page_name = 'home'; @endphp
+
+@section('header')
 @include('browser-header')
+@endsection
+
+@section('content')
+
 
 <style>
 	.movie_thumb{}
