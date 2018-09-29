@@ -95,7 +95,7 @@
 			<!-- SEARCH FORM -->
 			<form class="navbar-form navbar-right" method="GET" action="{{route('search')}}">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Titles, peoples, genres" 
+					<input type="text" class="form-control" placeholder="Titles, Audio, genres" 
 						style="background-color: #000; border: 1px solid #808080;" name="search_key">
 				</div>
 				<button type="submit" onsubmit="return false" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
