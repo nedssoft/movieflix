@@ -38,7 +38,11 @@
 						Password
 					</div>
 					<div class="black_text">
-						<input type="password" name="password" style="padding: 10px; width:100%;" />
+						<input type="password" name="password" id="password" style="padding: 10px; width:100%;" />
+					</div>
+					<div class="black_text">
+						<label>Show Password</label>
+						<input type="checkbox" id="show-passowrd" />
 					</div>
 					<button  type="submit" class="btn btn-danger" style=" width: 100%; margin: 20px 0px;"> Sign in </button>
 				</form>
@@ -48,4 +52,21 @@
 		</div>
 	</div>
 </div>
+@push('scripts')
+	<script >
+		$(document).ready(function(){
+
+			$('#show-passowrd').click(function(){
+
+				if ($('#password').attr('type') === 'password'){
+
+					$('#password').attr('type', 'text');
+				}
+				else{
+					$('#password').attr('type', 'password');
+				}
+			})
+		});
+	</script>
+@endpush
 @endsection
