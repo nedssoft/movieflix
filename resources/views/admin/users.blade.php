@@ -16,7 +16,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div>
-						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#add-users"> <i class="fa fa-plus"></i> Create New User</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#add-users" data-keyboard="false" data-backdrop="static"> <i class="fa fa-plus"></i> Create New User</a>
 					</div>
 					<div class="x_content">
 						<table id="datatable" class="table table-striped table-bordered">

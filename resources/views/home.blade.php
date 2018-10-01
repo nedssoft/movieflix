@@ -18,8 +18,8 @@
 <!-- TOP FEATURED SECTION -->
 
 @isset($featured_movie)
-<div style="height:85vh;width:100%;background-image: url({{ $featured_movie->poster }}); background-size:cover;">
-	<div style="font-size: 85px;font-weight: bold;clear: both;padding: 200px 0px 0px 50px;color: #fff;">
+<div style="height:85vh;width:100%;background-image: url({{ $featured_movie->poster }}); background-size:cover; margin-bottom: 100px">
+	<div style="font-size: 85px;font-weight: bold;clear: both;padding: 200px 0px 0px 50px;color: #fff; ">
 		{{$featured_movie->title}}
 		<div style="font-size: 30px; letter-spacing: .2px; color: #fff; font-weight: 400;">
 			{{ $featured_movie->description}}
@@ -45,13 +45,15 @@
 		</span>
 	</div>
 </div>
+@else
+@push('styles') <style type="text/css"> .separator{padding: 60px;}</style> @endpush
 @endisset
 
 <!-- MY LIST, GENRE WISE LISTING & SLIDER -->
 @isset ($genres)
 	@foreach ($genres as $row)
 	@if (count($row->movies)> 0 && in_array(auth()->user()->type, (array)$row->types))
-<div class="row" style="margin:0px 20px;">
+<div class="row" style="margin:0px 20px 0px 20px;">
 	<h3 style="color: #fff">{{ $row->name}}</h3>
 	<div class="content">
 		<div class="grid">
@@ -77,7 +79,7 @@
 @if (count($music))
 	@foreach ( $music as $mu)
 	@if ($mu->movies())
-		<div class="row" style="margin:0px 20px;">
+		<div class="row" style="margin:0px 20px 0px 20px;">
 		<h3 style="color: #fff">{{ $mu->name}} Music</h3>
 		<div class="content">
 			<div class="grid">

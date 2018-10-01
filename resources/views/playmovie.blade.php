@@ -84,7 +84,7 @@
 
 				@else
 					<div class="intrinsic-container intrinsic-container-16x9">
-  					<video src="{{$movie->url}}" allowfullscreen style="border:0px; width:100%; height:100%;" controlsList="nodownload" autoplay controls></video>
+  					<video src="{{$movie->url}}" allowfullscreen style="border:0px; width:100%; height:100%;" controlsList="nodownload" preload="metadata" autoplay controls></video>
 					</div>
 				
 				@endif

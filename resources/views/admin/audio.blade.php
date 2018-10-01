@@ -10,9 +10,9 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel" style="min-height: 530px">
 					<div class="x_title d-flex">
-						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#user-type">Set Use Type</a>
-						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#add-genre">Add Genre</a>
-						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#upload">Upload Audio</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#user-type" data-keyboard="false" data-backdrop="static">Set Use Type</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#add-genre" data-keyboard="false" data-backdrop="static">Add Genre</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#upload" data-keyboard="false" data-backdrop="static">Upload Audio</a>
 						
 					</div>
 					<div class="x_content">

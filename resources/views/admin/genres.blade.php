@@ -10,9 +10,9 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel" style="min-height: 530px">
           <div class="x_title">
-             <a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#add-genre"><i class="fa fa-plus"></i> Add Genre</a>
+             <a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#add-genre" data-backdrop="static"><i class="fa fa-plus"></i> Add Genre</a>
 
-           <a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#music-sub-genre"><i class="fa fa-plus"></i> Add Music Sub Genre</a>
+           <a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#music-sub-genre" data-backdrop="static"><i class="fa fa-plus"></i> Add Music Sub Genre</a>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">

@@ -10,10 +10,10 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel" style="min-height: 530px">
 					<div class="x_title d-flex">
-						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#upload">Upload Movie</a>
-						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#featured-movie">Set Featured Movie</a>
-						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#live-tv">Upload Live TV</a>
-						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#music">Upload Music</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#upload" data-keyboard="false" data-backdrop="static">Upload Movie</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#featured-movie" data-keyboard="false" data-backdrop="static">Set Featured Movie</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#live-tv" data-keyboard="false" data-backdrop="static">Upload Live TV</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#music" data-keyboard="false" data-backdrop="static">Upload Music</a>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">

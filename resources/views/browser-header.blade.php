@@ -110,7 +110,7 @@
 	else
 		$padding_amount = '50px';
 	@endphp
-<div style="padding: {{ $padding_amount}};"></div>
+<div style="padding: {{ $padding_amount}};" class="separator"></div>
 
 
 
