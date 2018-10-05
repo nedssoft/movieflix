@@ -112,4 +112,9 @@ class HomeController extends Controller
     {
         return view('genre-details', compact('genre'));
     }
+
+    public function showAudioGenres(AudioGenre $audio_genre)
+    {
+        return view('audio-details', compact('audio_genre'));
+    }
 }

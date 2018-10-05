@@ -35,7 +35,7 @@
 				<!-- MOVIES GENRE WISE-->
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="" style="color: #e50914; font-weight: bold;">
-						Movie <span class="caret"></span>
+						Movies <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="themes">
 						@if(movies())
@@ -53,7 +53,7 @@
 				<!-- TV SERIES GENRE WISE-->
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="" style="color: #e50914; font-weight: bold;">
-						Tv Serial <span class="caret"></span>
+						TV Channels <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="themes">
 						@if(liveTv())
@@ -70,7 +70,7 @@
 				</li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="" style="color: #e50914; font-weight: bold;">
-						Genres <span class="caret"></span>
+						Categories <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="themes">
 						@if(genres())
@@ -78,6 +78,22 @@
 							<li>
 								<a href="{{ route('view.genre', [$genre->id, str_slug($genre->name)])}}">
 						 		{{ $genre->name}}
+								</a>
+							</li>
+						@endforeach
+						@endif
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="" style="color: #e50914; font-weight: bold;">
+						Audio Music <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="themes">
+						@if(audios())
+						@foreach (audios() as $audio)
+							<li>
+								<a href="{{ route('view.audio', [$audio->id, str_slug($audio->name)])}}">
+						 		{{ title_case($audio->name) }}
 								</a>
 							</li>
 						@endforeach

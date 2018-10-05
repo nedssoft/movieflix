@@ -54,3 +54,4 @@ Route::get('/movie/{movie}/{title}/play', 'HomeController@playMovie')->name('vie
     Route::get('search', 'HomeController@search')->name('search');
 Route::get('audio/{audio}/{name}/play', 'HomeController@playAudio')->name('play.audio');
 Route::get('genre/{genre}/{name}/view', 'HomeController@showGenres')->name('view.genre');
+Route::get('audio/{audio_genre}/{name}/view', 'HomeController@showAudioGenres')->name('view.audio');

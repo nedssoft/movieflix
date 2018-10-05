@@ -2,6 +2,8 @@
 
 use App\Movie;
 use App\Genre;
+use App\AudioGenre;
+use App\AudioUserType;
 
 
 if (!function_exists('movies')){
@@ -58,4 +60,23 @@ if (!function_exists('genres')){
 
 		return $genres;
 	}
+}
+
+function audios()
+{
+	 $audioTypes = AudioUserType::first();
+
+        if ($audioTypes) {
+
+            $types = $audioTypes->types;
+
+            if (in_array(auth()->user()->type, $types)) {
+
+                $audio_genres = AudioGenre::latest()->get();
+
+                return $audio_genres;
+            }
+        }
+
+        return null;
 }

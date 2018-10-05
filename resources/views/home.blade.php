@@ -14,18 +14,37 @@
 	.movie_thumb{}
 	.btn_opaque{font-size:20px; border: 1px solid #939393;text-decoration: none;margin: 10px;background-color: rgba(0, 0, 0, 0.74); color: #fff;}
 	.btn_opaque:hover{border: 1px solid #939393;text-decoration: none;background-color: rgba(57, 57, 57, 0.74);color:#fff;}
+	.view-all {
+		margin: 80px 0 0 20px;
+
+	}
+	@media (max-width: 499px) {
+		.view-all {
+
+		 margin: 0px auto ;
+
+		}
+
+		.featured {
+			font-size: 18px !important;
+			padding: 100px 0px 0px 10px !important;
+		}
+		.featured .play {
+			margin: 50px auto !important;
+		}
+	}
 </style>
 <!-- TOP FEATURED SECTION -->
 
 @isset($featured_movie)
 <div style="height:85vh;width:100%;background-image: url({{ $featured_movie->poster }}); background-size:cover; margin-bottom: 100px">
-	<div style="font-size: 85px;font-weight: bold;clear: both;padding: 200px 0px 0px 50px;color: #fff; ">
+	<div style="font-size: 85px;font-weight: bold;clear: both;padding: 200px 0px 0px 50px;color: #fff; " class="featured">
 		{{$featured_movie->title}}
 		<div style="font-size: 30px; letter-spacing: .2px; color: #fff; font-weight: 400;">
 			{{ $featured_movie->description}}
 		</div>
 		<a href="{{ route('view.movie',[$featured_movie->id, str_slug($featured_movie->title)])}}" 
-			class="btn btn-danger btn-lg" style="font-size: 20px;"> 
+			class="btn btn-danger btn-lg play" style="font-size: 20px;"> 
 		<b><i class="fa fa-play"></i> PLAY</b>
 		</a>
 		<!-- ADD OR DELETE FROM PLAYLIST -->
@@ -59,7 +78,7 @@
 	<div class="content">
 		<div class="grid">
 			@isset ($row->movies)
-				@foreach ($row->movies as $m)
+				@foreach ($row->movies->take(5) as $m)
 					@php
 					$title	=	$m['title'];
 					$link	=	route('view.movie', [$m->id, str_slug($m->title)]);
@@ -71,7 +90,11 @@
 			@endisset
 				
 				
+				
 		</div>
+		@if (count($row->movies) > 5)
+			<a href="{{ route('view.genre', [$row->id, str_slug($row->name)])}}" class="btn btn-lg btn-danger view-all">View All <i class="fa fa-play"></i></a>
+		@endif
 	</div>
 </div>
 @endif
@@ -85,7 +108,7 @@
 		<div class="content">
 			<div class="grid">
 				@if ($mu->movies())
-					@foreach ($mu->movies()->take(6) as $m)
+					@foreach ($mu->movies()->take(5) as $m)
 						@php
 						$title	=	$m['title'];
 						$link	=	route('view.movie', [$m->id, str_slug($m->title)]);
@@ -96,8 +119,11 @@
 				@endforeach
 				@endif
 					
-					
 			</div>
+				@if (count($mu->movies()) > 5)
+				<a href="{{route('view.genre', [$mu->movies()->first()->genre->id, str_slug($mu->movies()->first()->genre->name) ])}}" class="btn btn-lg btn-danger view-all">View All <i class="fa fa-play"></i></a>
+				@endif	
+
 		</div>
 	</div>
 	@endif
@@ -112,7 +138,7 @@
 		<div class="content">
 			<div class="grid">
 				
-					@foreach ($a->audios as $audio)
+					@foreach ($a->audios->take(5) as $audio)
 						@php
 						$name	=	$audio['name'];
 						$link	=	route('play.audio', [$audio->id, str_slug($name)]);
@@ -120,8 +146,13 @@
 						
 						@endphp
 						@include('audio-thumb')
-				@endforeach		
+				@endforeach	
+				
+
 			</div>
+			@if (count($a->audios) > 5)
+				<a href="{{route('view.audio', [$a->id, str_slug($a->name)])}}" class="btn btn-lg btn-danger view-all">View All <i class="fa fa-play"></i></a>
+			@endif	
 		</div>
 	</div>
 	@endif
