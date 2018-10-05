@@ -40,9 +40,9 @@
 					<div class="black_text">
 						<input type="password" name="password" id="password" style="padding: 10px; width:100%;" />
 					</div>
-					<div class="black_text">
-						<label>Show Password</label>
+					<div class="black_text" style="margin-top: 10px">
 						<input type="checkbox" id="show-passowrd" />
+						<label class="black_text" style="font-weight: normal;">Show Password</label>
 					</div>
 					<button  type="submit" class="btn btn-danger" style=" width: 100%; margin: 20px 0px;"> Sign in </button>
 				</form>

@@ -50,10 +50,11 @@
 @endisset
 
 <!-- MY LIST, GENRE WISE LISTING & SLIDER -->
+<div style="margin-top: 100px">
 @isset ($genres)
 	@foreach ($genres as $row)
 	@if (count($row->movies)> 0 && in_array(auth()->user()->type, (array)$row->types))
-<div class="row" style="margin:0px 20px 0px 20px;">
+<div class="row" style="margin:0px 20px 20px 20px;">
 	<h3 style="color: #fff">{{ $row->name}}</h3>
 	<div class="content">
 		<div class="grid">
@@ -79,12 +80,12 @@
 @if (count($music))
 	@foreach ( $music as $mu)
 	@if ($mu->movies())
-		<div class="row" style="margin:0px 20px 0px 20px;">
+		<div class="row" style="margin:0px 20px 20px 20px;">
 		<h3 style="color: #fff">{{ $mu->name}} Music</h3>
 		<div class="content">
 			<div class="grid">
 				@if ($mu->movies())
-					@foreach ($mu->movies() as $m)
+					@foreach ($mu->movies()->take(6) as $m)
 						@php
 						$title	=	$m['title'];
 						$link	=	route('view.movie', [$m->id, str_slug($m->title)]);
@@ -106,7 +107,7 @@
 @if (count($audio_genres))
 	@foreach ( $audio_genres as $a)
 	@if (count($a->audios))
-		<div class="row" style="margin:0px 20px;">
+		<div class="row" style="margin:0px 20px 20px 20px;">
 		<h3 style="color: #fff">{{ $a->name}} | Audio Music</h3>
 		<div class="content">
 			<div class="grid">
@@ -126,5 +127,5 @@
 	@endif
 	@endforeach
 @endif
-
+</div>
 @endsection

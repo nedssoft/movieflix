@@ -1,6 +1,7 @@
 <?php
 
 use App\Movie;
+use App\Genre;
 
 
 if (!function_exists('movies')){
@@ -41,5 +42,20 @@ if (!function_exists('liveTv')){
 		}
 
 		return null;
+	}
+}
+
+if (!function_exists('genres')){
+
+	function genres()
+	{
+		
+		// dd(Genre::all());
+		$genres = Genre::get()->filter(function($g){
+
+			return $g->types && strtolower($g->name) != 'live tv' &&  in_array(auth()->user()->type, $g->types);
+		});
+
+		return $genres;
 	}
 }

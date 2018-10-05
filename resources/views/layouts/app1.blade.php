@@ -37,7 +37,7 @@
        bottom:0px !important;
        width:100%;
        height:100px;   /* Height of the footer */
-       background: #484848;
+       background: #202020;
        /*padding-top: 50px;*/
     }
     .list-unstyled >li {

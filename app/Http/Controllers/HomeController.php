@@ -107,4 +107,9 @@ class HomeController extends Controller
     {
         return view('play-audio', compact('audio'));
     }
+
+    public function showGenres(Genre $genre)
+    {
+        return view('genre-details', compact('genre'));
+    }
 }

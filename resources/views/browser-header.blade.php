@@ -68,10 +68,26 @@
 						@endif
 					</ul>
 				</li>
-				<!-- MY LIST -->
-				<li>
-					<a href="#">My List</a>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="" style="color: #e50914; font-weight: bold;">
+						Genres <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="themes">
+						@if(genres())
+						@foreach (genres() as $genre)
+							<li>
+								<a href="{{ route('view.genre', [$genre->id, str_slug($genre->name)])}}">
+						 		{{ $genre->name}}
+								</a>
+							</li>
+						@endforeach
+						@endif
+					</ul>
 				</li>
+				<!-- MY LIST -->
+				{{-- <li>
+					<a href="#">My List</a>
+				</li> --}}
 			</ul>
 			<!-- PROFILE, ACCOUNT SECTION -->
 			<ul class="nav navbar-nav navbar-right">
