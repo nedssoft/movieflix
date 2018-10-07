@@ -18,10 +18,15 @@
 		.blue_text{color: #0080ff;}
 
     body {
-   margin:0 !important;
-   padding:0px !important;
-   padding-bottom: 0px !important;
-   height:100% !important;
+       margin:0 !important;
+       padding:0px !important;
+       padding-bottom: 0px !important;
+       height:100% !important;
+       -webkit-user-select: none;  /* Chrome all / Safari all */
+      -moz-user-select: none;     /* Firefox all */
+      -ms-user-select: none;      /* IE 10+ */
+      -o-user-select: none;
+      user-select: none;
     }
     #app{
       min-height: 100%;
@@ -71,6 +76,14 @@
     
   </footer>
 </div>
+  
+      <script>
+        window.oncontextmenu = function () {
+            
+            return false;
+        }
+    </script>
+ 
   <script src="{{asset('frontend/flixer/jquery-1.10.2.min.js')}}"></script>
   <script src="{{asset('frontend/flixer/bootstrap.min.js')}}" ></script>
   @stack('scripts')

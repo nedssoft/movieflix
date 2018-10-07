@@ -13,6 +13,12 @@
 	.btn_opaque:hover{border: 1px solid #939393;text-decoration: none;background-color: rgba(57, 57, 57, 0.74);color:#fff;}
 	.video_cover {
 	position: relative;padding-bottom: 30px;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+      -moz-user-select: none;     /* Firefox all */
+      -ms-user-select: none;      /* IE 10+ */
+      -o-user-select: none;
+      user-select: none;
+    }
 	}
 	.video_cover:after {
 	content : "";
