@@ -130,7 +130,7 @@
 	@endforeach
 @endif
 
-@if (count($audio_genres))
+{{-- @if (count($audio_genres))
 	@foreach ( $audio_genres as $a)
 	@if (count($a->audios))
 		<div class="row" style="margin:0px 20px 20px 20px;">
@@ -157,6 +157,6 @@
 	</div>
 	@endif
 	@endforeach
-@endif
+@endif --}}
 </div>
 @endsection
