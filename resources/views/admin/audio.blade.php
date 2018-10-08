@@ -149,7 +149,7 @@
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="exampleFormControlFile1">Audio File</label>
-							<input type="file" class="form-control" id="exampleFormControlFile1" name="audio"  accept="audio/*" required>
+							<input type="file" class="form-control" id="exampleFormControlFile1" name="audio"  accept="audio/mpeg" required>
 							@if ($errors->has('audio'))
 								<span class="text-danger">{{ $errors->first('audio')}}</span>
 							@endif
@@ -203,7 +203,7 @@
 	@push('scripts')
 		<script type="text/javascript">
 		
-			@if ($errors->has('video'))
+			@if ($errors->has('audio'))
 				$('#upload').modal('show');
 			@endif
 
