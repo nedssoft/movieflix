@@ -148,7 +148,7 @@ class AdminController extends Controller
         	'title' => 'required',
         ]);
 
-        if ($request->hasFile('poster')) {
+         if ($request->hasFile('poster')) {
         	$poster = $request->file('poster');
 	        $ext = $poster->getClientOriginalExtension();
 

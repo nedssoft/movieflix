@@ -4,7 +4,7 @@
 	@php $page_name = 'home'; @endphp
 
 @section('header')
-@include('browser-header')
+@include('external.browser-header')
 @endsection
 
 @section('content')
@@ -72,7 +72,7 @@
 <div style="margin-top: 100px">
 @isset ($genres)
 	@foreach ($genres as $row)
-	@if (count($row->movies)> 0 && in_array(auth()->user()->type, (array)$row->types))
+	@if (count($row->movies)> 0 )
 <div class="row" style="margin:0px 20px 20px 20px;">
 	<h3 style="color: #fff">{{ $row->name}}</h3>
 	<div class="content">
@@ -81,7 +81,7 @@
 				@foreach ($row->movies->take(5) as $m)
 					@php
 					$title	=	$m['title'];
-					$link	=	route('view.movie', [$m->id, str_slug($m->title)]);
+					$link	=	route('view.movie.external', [$m->id, str_slug($m->title)]);
 					$thumb	=	$m->poster;
 					
 					@endphp
@@ -93,7 +93,7 @@
 				
 		</div>
 		@if (count($row->movies) > 5)
-			<a href="{{ route('view.genre', [$row->id, str_slug($row->name)])}}" class="btn btn-lg btn-danger view-all">View All <i class="fa fa-play"></i></a>
+			<a href="{{ route('view.genre.external', [$row->id, str_slug($row->name)])}}" class="btn btn-lg btn-danger view-all">View All <i class="fa fa-play"></i></a>
 		@endif
 	</div>
 </div>
@@ -121,15 +121,15 @@
 					
 			</div>
 				@if (count($mu->movies()) > 5)
-				<a href="{{route('view.genre', [$mu->movies()->first()->genre->id, str_slug($mu->movies()->first()->genre->name) ])}}" class="btn btn-lg btn-danger view-all">View All <i class="fa fa-play"></i></a>
+				<a href="{{route('view.genre.external', [$mu->movies()->first()->genre->id, str_slug($mu->movies()->first()->genre->name) ])}}" class="btn btn-lg btn-danger view-all">View All <i class="fa fa-play"></i></a>
 				@endif	
 
 		</div>
 	</div>
 	@endif
 	@endforeach
-@endif
- --}}
+@endif --}}
+
 {{-- @if (count($audio_genres))
 	@foreach ( $audio_genres as $a)
 	@if (count($a->audios))

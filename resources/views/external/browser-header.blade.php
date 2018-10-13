@@ -21,7 +21,7 @@
 <div class="navbar navbar-default navbar-fixed-top {{$nav_type}}" >
 	<div class="container" style=" width: 100%;">
 		<div class="navbar-header">
-			<a href="{{ route('home')}}" class="navbar-brand">
+			<a href="{{ route('home.external')}}" class="navbar-brand">
 				<img src="{{asset('img/logo.png')}}" style=" height: 32px;margin-right: 50px;" />
 			</a>
 			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
@@ -38,10 +38,10 @@
 						Movies <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="themes">
-						@if(movies())
-						@foreach (movies() as $m)
+						@if(_movies())
+						@foreach (_movies() as $m)
 							
-						<li><a href="{{ route('view.movie', [$m->id, str_slug($m->title)])}}">
+						<li><a href="{{ route('view.movie.external', [$m->id, str_slug($m->title)])}}">
 						 {{ $m->title}}
 							</a>
 						</li>
@@ -56,10 +56,10 @@
 						TV Channels <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="themes">
-						@if(liveTv())
-						@foreach (liveTv() as $m)
+						@if(_liveTv())
+						@foreach (_liveTv() as $m)
 							
-						<li><a href="{{ route('view.movie', [$m->id, str_slug($m->title)])}}">
+						<li><a href="{{ route('view.movie.external', [$m->id, str_slug($m->title)])}}">
 						 {{ $m->title}}
 							</a>
 						</li>
@@ -73,10 +73,10 @@
 						Categories <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="themes">
-						@if(genres())
-						@foreach (genres() as $genre)
+						@if(_genres())
+						@foreach (_genres() as $genre)
 							<li>
-								<a href="{{ route('view.genre', [$genre->id, str_slug($genre->name)])}}">
+								<a href="{{ route('view.genre.external', [$genre->id, str_slug($genre->name)])}}">
 						 		{{ $genre->name}}
 								</a>
 							</li>
@@ -89,10 +89,10 @@
 						Audio Music <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="themes">
-						@if(audios())
-						@foreach (audios() as $audio)
+						@if(_audios())
+						@foreach (_audios() as $audio)
 							<li>
-								<a href="{{ route('view.audio', [$audio->id, str_slug($audio->name)])}}">
+								<a href="{{ route('view.audio.external', [$audio->id, str_slug($audio->name)])}}">
 						 		{{ title_case($audio->name) }}
 								</a>
 							</li>
@@ -100,22 +100,24 @@
 						@endif
 					</ul>
 				</li>
+
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="" style="color: #e50914; font-weight: bold;">
 						Video Music <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="themes">
-						@if(musicVideo())
-						@foreach (musicVideo() as $_mu)
+						@if(_musicVideo())
+						@foreach (_musicVideo() as $_m)
 							<li>
-								<a href="{{ route('view.music.genres', [$_mu->id, str_slug($_mu->name)])}}">
-						 		{{ title_case($_mu->name) }}
+								<a href="{{ route('view.music.external', [$_m->id, str_slug($_m->name)])}}">
+						 		{{ title_case($_m->name) }}
 								</a>
 							</li>
 						@endforeach
 						@endif
 					</ul>
 				</li>
+
 				<!-- MY LIST -->
 				{{-- <li>
 					<a href="#">My List</a>
@@ -126,9 +128,9 @@
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:10px;">
 					<img src="{{ asset('img/thumb1.png')}}" style="height:30px;" />
-						{{ auth()->user()->username}}
+						{{-- {{ auth()->user()->username}} --}}
 					<span class="caret"></span></a>
-					<ul class="dropdown-menu" aria-labelledby="themes">
+				{{-- 	<ul class="dropdown-menu" aria-labelledby="themes">
 						
 						<li><a href="{{ route('logout') }}"
 							onclick="event.preventDefault();
@@ -137,7 +139,7 @@
                                         @csrf
                                     </form>
                          </li>
-					</ul>
+					</ul> --}}
 				</li>
 			</ul>
 			<!-- SEARCH FORM -->

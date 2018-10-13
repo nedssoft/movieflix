@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+
 
 
 
@@ -55,3 +53,12 @@ Route::get('/movie/{movie}/{title}/play', 'HomeController@playMovie')->name('vie
 Route::get('audio/{audio}/{name}/play', 'HomeController@playAudio')->name('play.audio');
 Route::get('genre/{genre}/{name}/view', 'HomeController@showGenres')->name('view.genre');
 Route::get('audio/{audio_genre}/{name}/view', 'HomeController@showAudioGenres')->name('view.audio');
+Route::get('video/{music_sub_genre}/{name}/view', 'HomeController@showVideoMusicGenres')->name('view.music.genres');
+
+Route::get('/', 'MovieController@index')->name('home.external');
+Route::get('/e/movie/{movie}/{title}/play', 'MovieController@playMovie')->name('view.movie.external');
+    Route::get('/e/search', 'MovieController@search')->name('search.external');
+Route::get('/e/audio/{audio}/{name}/play', 'MovieController@playAudio')->name('play.audio.external');
+Route::get('/e/genre/{genre}/{name}/view', 'MovieController@showGenres')->name('view.genre.external');
+Route::get('/e/audio/{audio_genre}/{name}/view', 'MovieController@showAudioGenres')->name('view.audio.external');
+Route::get('/e/video/{music_sub_genre}/{name}/view', 'MovieController@showVideoMusicGenres')->name('view.music.external');
