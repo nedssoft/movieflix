@@ -97,8 +97,8 @@ class AdminController extends Controller
             $video->move($destination, $filename);
         } catch (\Exception $e) {
 
-            report($e);
-            return back()->with('error','Video failed to upload');
+            throw $e;
+            // return back()->with('error','Video failed to upload');
             
         }
 
