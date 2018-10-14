@@ -13,7 +13,7 @@
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#upload" data-keyboard="false" data-backdrop="static">Upload Movie</a>
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#featured-movie" data-keyboard="false" data-backdrop="static">Set Featured Movie</a>
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#live-tv" data-keyboard="false" data-backdrop="static">Upload Live TV</a>
-						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#music" data-keyboard="false" data-backdrop="static">Upload Music</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#music" data-keyboard="false" data-backdrop="static">Upload Music Video</a>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -116,7 +116,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Upload Video</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Upload Music Video</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -142,7 +142,7 @@
 					
 					</div>
 					<div class="form-group">
-						<label for="exampleFormControlFile1">Genre</label>
+						<label for="exampleFormControlFile1">Main Genre (must be <i>Music</i>)</label>
 						<select class="form-control chosen-select" name="genre_id">
 							@isset($genres)
 								@foreach ($genres as $g)
@@ -153,7 +153,7 @@
 					
 					</div>
 					<div class="form-group">
-						<label for="exampleFormControlFile1">Genre</label>
+						<label for="exampleFormControlFile1">Music Video Sub-Genre</label>
 						<select class="form-control chosen-select" name="music_id">
 							@isset($music)
 								@foreach ($music as $m)
