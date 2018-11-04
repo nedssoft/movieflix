@@ -21,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['search']);
     }
 
     /**
@@ -75,32 +75,32 @@ class HomeController extends Controller
 
          $audioTypes = AudioUserType::first();
 
-        if ($audioTypes) {
+        // if ($audioTypes) {
 
-            $types = $audioTypes->types;
+        //     $types = $audioTypes->types;
 
-            if (in_array(auth()->user()->type, $types)) {
+        //     if (in_array(auth()->user()->type, $types)) {
 
-                $audios = Audio::where('name', 'LIKE', '%'.$search.'%')->get();
-            }
-        }
-        $genres = $genres->filter(function($g){
-            return in_array(auth()->user()->type, (array)$g->types);
-        })->map(function($ge) use ($result) {
+        //         $audios = Audio::where('name', 'LIKE', '%'.$search.'%')->get();
+        //     }
+        // }
+        // $genres = $genres->filter(function($g){
+        //     return in_array(auth()->user()->type, (array)$g->types);
+        // })->map(function($ge) use ($result) {
 
-           return  $result->push($ge->movies);
+        //    return  $result->push($ge->movies);
 
-        })->flatten();
+        // })->flatten();
 
 
-        $movies = $movies->filter(function($m){
-            return in_array(auth()->user()->type, (array)$m->genre->types);
-        });
+        // $movies = $movies->filter(function($m){
+        //     return in_array(auth()->user()->type, (array)$m->genre->types);
+        // });
 
         $data['movies'] =  $genres->merge($movies);
         $data['audios'] = $audios;
 
-        return view('search', $data);
+        return view('external.search', $data);
     }
 
     public function playAudio(Audio $audio)

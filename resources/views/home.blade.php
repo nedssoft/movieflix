@@ -43,7 +43,7 @@
 		<div style="font-size: 30px; letter-spacing: .2px; color: #fff; font-weight: 400;">
 			{{ $featured_movie->description}}
 		</div>
-		<a href="{{ route('view.movie',[$featured_movie->id, str_slug($featured_movie->title)])}}" 
+		<a href="{{ route('view.movie.external',[$featured_movie->id, str_slug($featured_movie->title)])}}" 
 			class="btn btn-danger btn-lg play" style="font-size: 20px;"> 
 		<b><i class="fa fa-play"></i> PLAY</b>
 		</a>
