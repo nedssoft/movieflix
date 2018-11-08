@@ -19,8 +19,8 @@ class MovieController extends Controller
 
         $audio_genres = AudioGenre::latest()->get();
            
-        $featured = FeaturedMovie::latest()->first();
-        $featured_movie = $featured ? $featured->movie : null;
+        $featured = FeaturedMovie::latest()->get();
+        $featured_movie = $featured ? $featured : null;
         $genres = Genre::where('name', '!=', 'Music')->get();
         return view('external.home', compact('featured_movie', 'genres', 'music', 'audios', 'audio_genres'));
     }

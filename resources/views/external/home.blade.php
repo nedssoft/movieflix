@@ -37,33 +37,37 @@
 <!-- TOP FEATURED SECTION -->
 
 @isset($featured_movie)
-<div style="height:85vh;width:100%;background-image: url({{ $featured_movie->poster }}); background-size:cover; margin-bottom: 100px">
-	<div style="font-size: 85px;font-weight: bold;clear: both;padding: 200px 0px 0px 50px;color: #fff; " class="featured">
-		{{$featured_movie->title}}
-		<div style="font-size: 30px; letter-spacing: .2px; color: #fff; font-weight: 400;">
-			{{ $featured_movie->description}}
+ <div class="slick-container container">
+	 @foreach ($featured_movie as $item)
+	 <div style="height:85vh;width:100%;background-image: url({{ $item->movie->poster }}); background-size:cover; margin-bottom: 100px">
+		<div style="font-size: 85px;font-weight: bold;clear: both;padding: 200px 0px 0px 50px;color: #fff; " class="featured">
+			{{$item->movie->title}}
+			<div style="font-size: 30px; letter-spacing: .2px; color: #fff; font-weight: 400;">
+				{{ $item->movie->description}}
+			</div>
+			<a href="{{ route('view.movie.external',[$item->movie->id, str_slug($item->movie->title)])}}" 
+				class="btn btn-danger btn-lg play" style="font-size: 20px;"> 
+			<b><i class="fa fa-play"></i> PLAY</b>
+			</a>
+			<!-- ADD OR DELETE FROM PLAYLIST -->
+			<span id="mylist_button_holder">
+			</span>
+			<span id="mylist_add_button" style="display:none;">
+			<a href="#" class="btn  btn-lg btn_opaque"
+				onclick=""> 
+			<b><i class="fa fa-plus"></i> MY LIST</b>
+			</a>
+			</span>
+			<span id="mylist_delete_button" style="display:none;">
+			<a href="#" class="btn  btn-lg btn_opaque"
+				onclick=""> 
+			<b><i class="fa fa-check"></i> MY LIST</b>
+			</a>
+			</span>
 		</div>
-		<a href="{{ route('view.movie.external',[$featured_movie->id, str_slug($featured_movie->title)])}}" 
-			class="btn btn-danger btn-lg play" style="font-size: 20px;"> 
-		<b><i class="fa fa-play"></i> PLAY</b>
-		</a>
-		<!-- ADD OR DELETE FROM PLAYLIST -->
-		<span id="mylist_button_holder">
-		</span>
-		<span id="mylist_add_button" style="display:none;">
-		<a href="#" class="btn  btn-lg btn_opaque"
-			onclick=""> 
-		<b><i class="fa fa-plus"></i> MY LIST</b>
-		</a>
-		</span>
-		<span id="mylist_delete_button" style="display:none;">
-		<a href="#" class="btn  btn-lg btn_opaque"
-			onclick=""> 
-		<b><i class="fa fa-check"></i> MY LIST</b>
-		</a>
-		</span>
 	</div>
-</div>
+	 @endforeach
+ </div>
 @else
 @push('styles') <style type="text/css"> .separator{padding: 60px;}</style> @endpush
 @endisset
@@ -158,5 +162,18 @@
 	@endif
 	@endforeach
 @endif --}}
+
 </div>
+@push('scripts')
+	<script>
+		$('.slick-container').slick({
+			dots: true,
+			infinite: true,
+			slidesToShow: 1,
+			slidesToScroll: 3,
+			autoplay: true,
+  			autoplaySpeed: 2000,
+			});
+	</script>
+@endpush
 @endsection
