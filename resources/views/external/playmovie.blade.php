@@ -80,7 +80,7 @@
 					<link rel="stylesheet" href="{{ asset('plugins/skin/skin.css')}}">
 				@endpush
 				<div class="intrinsic-container intrinsic-container-16x9 flowplayer" data-swf="flowplayer.swf" data-ratio="0.4167">
-  					<video style="border:0px; width:100%; height:100%;"> 
+  					<video id="video" style="border:0px; width:100%; height:100%;"> 
   						<source src="{{$movie->url}}" type="application/x-mpegURL">	 
   						<img src="{{$movie->poster}}">
   						Your browser does not support the video tag, kindly update or change your browser!	
@@ -90,7 +90,7 @@
 
 				@else
 					<div class="intrinsic-container intrinsic-container-16x9">
-  					<video src="{{$movie->url}}" allowfullscreen style="border:0px; width:100%; height:100%;" controlsList="nodownload" preload="metadata" autoplay controls></video>
+  					<video id="video" src="{{$movie->url}}" allowfullscreen style="border:0px; width:100%; height:100%;" controlsList="nodownload" preload="metadata" autoplay controls></video>
 					</div>
 				
 				@endif
@@ -111,6 +111,11 @@
 				</script> --}}
 				
 			</div>
+		</div>
+		<div class="d-flex flex-direction-row justify-content-center">
+			<button class="btn btn-sm btn-danger" id="rewind" onclick="skip(-10)"><<</button>
+			<button class="btn btn-sm btn-danger"  onclick="pause()">||</button>
+			<button class="btn btn-sm btn-danger" id="skip" onclick="skip(10)">>></button>
 		</div>
 	</div>
 </div>
@@ -241,5 +246,29 @@
 	
 </div>
 
+@push('scripts')
+	<script type="text/javascript">
+		
+		function skip(value){
 
+		
+			var video = document.getElementById('video');
+			
+			// if (value < 1) {
+
+			// 	if (video.currentTime > 5) {
+			// 		return 	video.currentTime = video.currentTime + value;	
+			// 	}
+			// }
+			// return video.currentTime = video.currentTime + value;
+			video.currentTime += parseFloat(value);
+		}
+		function pause() {
+			var video = document.getElementById('video');
+
+			return video.pause();
+		}
+	</script>
+	
+@endpush
 @endsection
