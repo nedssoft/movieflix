@@ -117,6 +117,22 @@
 						@endif
 					</ul>
 				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="" style="color: #e50914; font-weight: bold;">
+						Comedies <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="themes">
+						@if(comedies())
+						@foreach (comedies() as $c)
+							<li>
+								<a href="{{ route('view.comedy.external', [$c->id, str_slug($c->name)])}}">
+						 		{{ title_case($c->name) }}
+								</a>
+							</li>
+						@endforeach
+						@endif
+					</ul>
+				</li>
 
 				<!-- MY LIST -->
 				{{-- <li>

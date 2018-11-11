@@ -9,6 +9,7 @@ use App\Movie;
 use Hash;
 use App\FeaturedMovie;
 use App\MusicSubGenre;
+use App\ComedySubGenre;
 use App\AudioUserType;
 use App\AudioGenre;
 use App\Audio;
@@ -118,6 +119,46 @@ class AdminController extends Controller
             return back()->with('error', 'failed to upload');
     }
 
+    public function uploadComedyVideo(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'video' => 'required',
+        ]);
+      
+        $video = $request->file('video');
+        $ext = $video->getClientOriginalExtension();
+
+        $destination = public_path('/movies/comedy/');
+        
+        $filename = str_slug($request->title).'-'.time().'-'.date('Y-m-d').'.'.$ext;
+        $url = asset('movies/comedy/'.$filename);
+
+        try {
+            $video->move($destination, $filename);
+        } catch (\Exception $e) {
+
+            throw $e;
+            // return back()->with('error','Video failed to upload');
+            
+        }
+
+        $newVideo = new Movie();
+
+        $newVideo->genre_id = $request->genre_id;
+        $newVideo->url = $url;
+        $newVideo->description = $request->description;
+        $newVideo->title = $request->title;
+        $newVideo->comedy_id = $request->comedy_id;
+        $newVideo->save();
+
+        if ($newVideo) {
+           
+            return back()->with('success', 'Uploaded');
+        }
+            return back()->with('error', 'failed to upload');
+    }
+
     public function uploadLiveTv(Request $request)
     {
         $this->validate($request, [
@@ -185,8 +226,9 @@ class AdminController extends Controller
     	$genres = Genre::latest()->get();
         $videos = Movie::latest()->get();
     	$music = MusicSubGenre::latest()->get();
+    	$comedies = ComedySubGenre::latest()->get();
 
-    	return view('admin.videos', compact('genres', 'videos', 'music'));
+    	return view('admin.videos', compact('genres', 'videos', 'music', 'comedies'));
     }
 
     public function addGenre(Request $request)
@@ -349,6 +391,14 @@ class AdminController extends Controller
         $this->validate($request, ['name' => 'required']);
 
         $sub = MusicSubGenre::create(['name' => $request->name]);
+
+        return back()->with('success', 'added!');
+    }
+    public function addComedySubGenre(Request $request)
+    {
+        $this->validate($request, ['name' => 'required']);
+
+        $sub = ComedySubGenre::create(['name' => $request->name]);
 
         return back()->with('success', 'added!');
     }

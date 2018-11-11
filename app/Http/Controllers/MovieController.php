@@ -8,6 +8,7 @@ use App\Genre;
 use App\Movie;
 use App\Audio;
 use App\MusicSubGenre;
+use App\ComedySubGenre;
 use App\FeaturedMovie;
 
 class MovieController extends Controller
@@ -21,7 +22,7 @@ class MovieController extends Controller
            
         $featured = FeaturedMovie::latest()->get();
         $featured_movie = $featured ? $featured : null;
-        $genres = Genre::where('name', '!=', 'Music')->get();
+        $genres = Genre::where('name', '!=', 'Music')->where('name', '!=', 'Comedy')->get();
         return view('external.home', compact('featured_movie', 'genres', 'music', 'audios', 'audio_genres'));
     }
 
@@ -69,6 +70,10 @@ class MovieController extends Controller
     public function showVideoMusicGenres(MusicSubGenre $music_sub_genre)
     {
     	return view('external.music-details', compact('music_sub_genre'));
+    }
+    public function showComedyGenres(ComedySubGenre $comedy_sub_genre)
+    {
+    	return view('external.comedy-details', compact('comedy_sub_genre'));
     }
 
 

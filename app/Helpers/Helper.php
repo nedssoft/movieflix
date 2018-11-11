@@ -5,6 +5,7 @@ use App\Genre;
 use App\AudioGenre;
 use App\AudioUserType;
 use App\MusicSubGenre;
+use App\ComedySubGenre;
 
 
 if (!function_exists('movies')){
@@ -154,6 +155,12 @@ function musicVideo()
             return $music;
 
         }
+}
+
+function comedies()
+{
+	$comedy = ComedySubGenre::all();
+	return $comedy;
 }
 
  

@@ -28,12 +28,14 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('genres', 'AdminController@genres')->name('genres');
     Route::post('upload/video', 'AdminController@uploadVideo')->name('admin.video.upload');
     Route::post('upload/music/video', 'AdminController@uploadMusicVideo')->name('music.video.upload');
+    Route::post('upload/comedy/video', 'AdminController@uploadComedyVideo')->name('comedy.video.upload');
     Route::post('upload/live-tv', 'AdminController@uploadLiveTv')->name('admin.tv.upload');
     Route::post('featured/movie', 'AdminController@setFeaturedMovie')->name('featured.movie');
     Route::post('movie/edit/{movie}', 'AdminController@editVideo')->name('admin.edit.video');
     Route::post('genre/edit/{genre}', 'AdminController@editGenre')->name('admin.genre.edit');
     Route::post('genre/add', 'AdminController@addGenre')->name('admin.genre.add');
     Route::post('music/sub-genre/add', 'AdminController@addMusicSubGenre')->name('music-sub-genre.add');
+    Route::post('comedy/sub-genre/add', 'AdminController@addComedySubGenre')->name('comedy-sub-genre.add');
     Route::get('movie/{movie}/delete', 'AdminController@deleteMovie')->name('admin.movie.delete');
     Route::get('genre/{genre}/delete', 'AdminController@deleteGenre')->name('genre.delete');
     Route::get('audio', 'AdminController@audio')->name('audio');
@@ -62,3 +64,4 @@ Route::get('/e/audio/{audio}/{name}/play', 'MovieController@playAudio')->name('p
 Route::get('/e/genre/{genre}/{name}/view', 'MovieController@showGenres')->name('view.genre.external');
 Route::get('/e/audio/{audio_genre}/{name}/view', 'MovieController@showAudioGenres')->name('view.audio.external');
 Route::get('/e/video/{music_sub_genre}/{name}/view', 'MovieController@showVideoMusicGenres')->name('view.music.external');
+Route::get('/e/comedy/{comedy_sub_genre}/{name}/view', 'MovieController@showComedyGenres')->name('view.comedy.external');

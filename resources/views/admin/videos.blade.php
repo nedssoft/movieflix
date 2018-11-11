@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+	@extends('layouts.admin.app')
 
 @section('content')
 <!-- page content -->
@@ -14,6 +14,7 @@
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#featured-movie" data-keyboard="false" data-backdrop="static">Set Featured Movie</a>
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#live-tv" data-keyboard="false" data-backdrop="static">Upload Live TV</a>
 						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#music" data-keyboard="false" data-backdrop="static">Upload Music Video</a>
+						<a class="btn btn-md btn-primary upload-video" data-toggle="modal" data-target="#comedy" data-keyboard="false" data-backdrop="static">Upload Comedy </a>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -158,6 +159,67 @@
 							@isset($music)
 								@foreach ($music as $m)
 								<option value="{{ $m->id}}">{{ $m->name}}</option>
+								@endforeach
+							@endisset
+						</select> 
+					
+					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" id="submit-button" class="btn btn-primary">Save changes</button>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="comedy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Upload Music Video</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form method="POST" action="{{ route('comedy.video.upload')}}" 
+				enctype="multipart/form-data">
+					@csrf
+					<div class="form-group">
+						<label for="exampleFormControlFile1"></label>
+						<input type="file" class="form-control-file" id="exampleFormControlFile1" name="video">
+						@if ($errors->has('video'))
+							<span class="text-danger">{{ $errors->first('video')}}</span>
+						@endif
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Title</label>
+						<input type="text" class="form-control"  name="title" >
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Description</label>
+						<input type="text" class="form-control"  name="description" >
+					
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Main Genre (must be <i>Comedy</i>)</label>
+						<select class="form-control chosen-select" name="genre_id">
+							@isset($genres)
+								@foreach ($genres as $g)
+								<option value="{{ $g->id}}">{{ $g->name}}</option>
+								@endforeach
+								@endisset
+						</select> 
+					
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlFile1">Comedy Sub-Genre</label>
+						<select class="form-control chosen-select" name="comedy_id">
+							@isset($comedies)
+								@foreach ($comedies as $m)
+
+									<option value="{{ $m->id}}" {{ $m->name === 'Comedy' ? 'selected': ''}}>{{ $m->name}}</option>
 								@endforeach
 							@endisset
 						</select> 
