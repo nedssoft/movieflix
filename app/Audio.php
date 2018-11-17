@@ -10,11 +10,11 @@ class Audio extends Model
 
     public function genre()
     {
-    	return $this->belongsTo(AudioGenre::class, 'genre_id');
+    	return $this->belongsTo(AudioGenre::class, 'genre_id')->orderBy('created_at', 'desc');
     }
 
     public function related()
     {
-    	return Audio::where('genre_id', $this->genre_id)->get();
+    	return Audio::where('genre_id', $this->genre_id)->latest()->get();
     }
 }

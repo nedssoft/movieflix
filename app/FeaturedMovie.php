@@ -8,6 +8,6 @@ class FeaturedMovie extends Model
 {
     public function movie()
     {
-    	return $this->belongsTo(Movie::class, 'movie_id');
+    	return $this->belongsTo(Movie::class, 'movie_id')->orderBy('created_at', 'desc');
     }
 }

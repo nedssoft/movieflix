@@ -12,6 +12,6 @@ class Genre extends Model
     
     public function movies()
     {
-    	return $this->hasMany(Movie::class, 'genre_id');
+    	return $this->hasMany(Movie::class, 'genre_id')->orderBy('created_at', 'desc');
     }
 }

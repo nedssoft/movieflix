@@ -13,7 +13,7 @@ class ComedySubGenre extends Model
 
     public function genre()
     {
-    	return $this->belongsTo(Genre::class, 'genre_id');
+    	return $this->belongsTo(Genre::class, 'genre_id')->orderBy('created_at', 'desc');
     }
 
     public function movies()

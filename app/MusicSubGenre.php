@@ -13,11 +13,11 @@ class MusicSubGenre extends Model
 
     public function genre()
     {
-    	return $this->belongsTo(Genre::class, 'genre_id');
+    	return $this->belongsTo(Genre::class, 'genre_id')->orderBy('created_at', 'desc');
     }
 
     public function movies()
     {
-    	return Movie::where('music_id', $this->id)->orderBy('created_at', 'desc')->get();
+    	return Movie::where('music_id', $this->id)->orderBy('created_at', 'desc')->latest()->get();
     }
 }

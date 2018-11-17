@@ -10,6 +10,6 @@ class AudioGenre extends Model
 
     public function audios()
     {
-    	return $this->hasMany(Audio::class, 'genre_id');
+    	return $this->hasMany(Audio::class, 'genre_id')->orderBy('created_at', 'desc');
     }
 }

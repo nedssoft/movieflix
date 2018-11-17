@@ -16,7 +16,7 @@ class MovieController extends Controller
     public function index()
     {
     	
-        $music = MusicSubGenre::all();
+        $music = MusicSubGenre::latest()->get();
 
         $audio_genres = AudioGenre::latest()->get();
            
