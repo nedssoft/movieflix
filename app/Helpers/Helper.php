@@ -37,8 +37,10 @@ if (!function_exists('liveTv')){
 		if ($movies) {
 			$movies = $movies->filter(function($m){
 
-				return strtolower($m->genre->name) == 'live tv' && 
+				if ($m->genre) {
+					return strtolower($m->genre->name) == 'live tv' && 
 				in_array(auth()->user()->type, $m->genre->types);
+				}
 				
 			});
 
@@ -103,8 +105,10 @@ if (!function_exists('_liveTv')){
 		if ($movies) {
 			$movies = $movies->filter(function($m){
 
-				return strtolower($m->genre->name) == 'live tv';
-				
+				if ($m->genre) {
+					return strtolower($m->genre->name) == 'live tv';
+
+				}				
 			});
 
 			return $movies;
