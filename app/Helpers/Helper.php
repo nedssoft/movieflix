@@ -32,7 +32,7 @@ if (!function_exists('liveTv')){
 
 	function liveTv()
 	{
-		$movies = Movie::latest()->get();
+		$movies = Movie::all();
 
 		if ($movies) {
 			$movies = $movies->filter(function($m){
@@ -76,7 +76,7 @@ function audios()
 
             if (in_array(auth()->user()->type, $types)) {
 
-                $audio_genres = AudioGenre::latest()->get();
+                $audio_genres = AudioGenre::all();
 
                 return $audio_genres;
             }
@@ -100,7 +100,7 @@ if (!function_exists('_liveTv')){
 
 	function _liveTv()
 	{
-		$movies = Movie::latest()->get();
+		$movies = Movie::all();
 
 		if ($movies) {
 			$movies = $movies->filter(function($m){
@@ -136,7 +136,7 @@ if (!function_exists('_genres')){
 function _audios()
 {
 	 
-    $audio_genres = AudioGenre::latest()->get();
+    $audio_genres = AudioGenre::all();
 
     return $audio_genres;
          
@@ -144,7 +144,7 @@ function _audios()
 
 function _musicVideo()
 {
-	  $music = MusicSubGenre::latest()->get();
+	  $music = MusicSubGenre::all();
 	  return $music;
 }
 
@@ -154,7 +154,7 @@ function musicVideo()
         
         if ($muzic && in_array(auth()->user()->type, (array)$muzic->types)) {
 
-            $music = MusicSubGenre::latest()->get();
+            $music = MusicSubGenre::all();
 
             return $music;
 
@@ -163,7 +163,7 @@ function musicVideo()
 
 function comedies()
 {
-	$comedy = ComedySubGenre::latest()->get();
+	$comedy = ComedySubGenre::all();
 	return $comedy;
 }
 
