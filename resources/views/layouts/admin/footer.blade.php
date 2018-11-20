@@ -7,10 +7,13 @@
  </footer>
  <!-- /footer content -->
  <!-- jQuery -->
- <script src="{{asset("portal/vendors/jquery/dist/jquery.min.js")}}"></script>
+ {{-- <script src="{{asset("portal/vendors/jquery/dist/jquery.min.js")}}"></script> --}}
  <!-- Bootstrap -->
+
  <script src="{{asset("portal/vendors/bootstrap/dist/js/bootstrap.min.js")}}"></script>
  <!-- FastClick -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
  <script src="{{asset("portal/vendors/fastclick/lib/fastclick.js")}}"></script>
  <!-- NProgress -->
  <script src="{{asset("portal/vendors/nprogress/nprogress.js")}}"></script>
@@ -62,7 +65,6 @@
  	
  </script>
  <!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <script src="{{asset('chosen/chosen.jquery.js')}}"></script>
 
@@ -71,5 +73,8 @@
     </script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+  $('#datatable').DataTable();
+</script>
  @stack('scripts')
  
