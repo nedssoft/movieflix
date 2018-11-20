@@ -16,11 +16,11 @@ class MovieController extends Controller
     public function index()
     {
     	
-        $music = MusicSubGenre::latest()->get();
+        $music = MusicSubGenre::all();
 
-        $audio_genres = AudioGenre::latest()->get();
+        $audio_genres = AudioGenre::all();
            
-        $featured = FeaturedMovie::latest()->get();
+        $featured = FeaturedMovie::all();
         $featured_movie = $featured ? $featured : null;
         $genres = Genre::where('name', '!=', 'Music')->where('name', '!=', 'Comedy')->get();
         return view('external.home', compact('featured_movie', 'genres', 'music', 'audios', 'audio_genres'));
