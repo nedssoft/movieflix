@@ -86,11 +86,13 @@
   						Your browser does not support the video tag, kindly update or change your browser!	
   					</video>
 				</div>
-	
+
 
 				@else
 					<div class="intrinsic-container intrinsic-container-16x9">
-  					<video id="video" src="{{$movie->url}}" allowfullscreen style="border:0px; width:100%; height:100%;" controlsList="nodownload" preload="metadata" autoplay controls></video>
+  					<video id="video" style="border:0px; width:100%; height:100%;" controlsList="nodownload" autoplay controls>
+  						<source src="{{$movie->url}}" type="video/mp4">
+  					</video>
 					</div>
 				
 				@endif
